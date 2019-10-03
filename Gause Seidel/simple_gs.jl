@@ -47,7 +47,7 @@ function FastGaussSeidel!(x::Vector{T}, A, id, d, alpha::T, v, tol::T, maxiter::
 	end
 	x .*= d
 	x ./= sum(x) # make sure it sums to 1
-	if !(x === xinit) # x is not xinit, so we need to copy it over
+	if !(x === xinit) 
 	   xinit[:] .= x
 	end
 	xinit
