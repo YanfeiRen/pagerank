@@ -34,7 +34,7 @@ function FastGaussSeidel!(x::Vector{T}, A, id, d, alpha::T, v, tol::T, maxiter::
 			   end
 		   end
 		   if i == v
-			   tmpsum += ialpha
+		   	tmpsum += ialpha
 		   end
 		   xi = tmpsum*id[i]
 		   x[i] = xi
