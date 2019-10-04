@@ -4,17 +4,6 @@ using StaticArrays
 using DataStructures
 using MatrixNetworks
 
-
-function load_data()
-    A = MatrixNetworks.readSMAT("/p/mnt/data/graph-db/snap/soc-LiveJournal1-scc.smat")
-    AI,AJ,AV = findnz(A)
-    d = vec(sum(A;dims=2))
-    n = size(A,1)
-    Pt = sparse(AJ,AI,AV./d[AI],n,n) # form the row-stochastic version of P
-    return A, Pt
-end
-A, Pt = load_data()
-
 function _is_in_svec(x::SVector{N,T},k::T) where {N,T}
     return minimum(abs.(x-k))==0
 end
@@ -68,6 +57,6 @@ GaussSeidelMultiPR(P, alpha, v, tol) = GaussSeidelMulti!(
     Vector{SVector{length(v),Float64}}(undef, size(P,1)),
     P, alpha, v, tol, ceil(Int, log(tol)/log(alpha)))
 
-GaussSeidelMultiPR(P, alpha, v) = GaussSeidelMultiPR(P,alpha,v,(1.0-alpha)/size(P,1))
+GaussSeidelMultiPR(P, alpha, v) = GaussSeidelMultiPR(P,alpha,v,min((1.0-alpha)/size(P,1), 1.0e-6))
 
-@time y = GaussSeidelMultiPR(Pt', 0.85, SVector((1 : 8)...))
+#@time y = GaussSeidelMultiPR(Pt', 0.85, SVector((1 : 8)...))

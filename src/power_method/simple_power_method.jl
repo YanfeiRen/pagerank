@@ -5,15 +5,6 @@ using DataStructures
 using MatrixNetworks
 import KahanSummation
 
-function load_data()
-    A = MatrixNetworks.readSMAT("/p/mnt/data/graph-db/snap/soc-LiveJournal1-scc.smat")
-    AI,AJ,AV = findnz(A)
-    d = vec(sum(A;dims=2))
-    n = size(A,1)
-    Pt = sparse(AI,AJ,AV./d[AI],n,n) # form the row-stochastic version of P
-    return A, Pt
-end
-
 function pagerank_power!(x::Vector{T}, y::Vector{T},
     P, alpha::T, v, tol::T,
     maxiter::Int) where T
@@ -51,6 +42,6 @@ end
 simple_pagerank(P, alpha, v::Int, tol) = pagerank_power!(
     Vector{Float64}(undef, size(P,1)), Vector{Float64}(undef, size(P,1)),
     P, alpha, v, tol, ceil(Int, log(tol)/log(alpha)))
-simple_pagerank(P, alpha, v::Int) = simple_pagerank(P,alpha,v,(1.0-alpha)/size(P,1))
-A, Pt = load_data()
-@time x = simple_pagerank(Pt', 0.85, 1)
+simple_pagerank(P, alpha, v::Int) = simple_pagerank(P,alpha,v,min((1.0-alpha)/size(P,1), 1.0e-6))
+#A, Pt = load_data()
+#@time x = simple_pagerank(Pt', 0.85, 1)

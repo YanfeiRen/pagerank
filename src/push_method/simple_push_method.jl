@@ -6,23 +6,6 @@ using MatrixNetworks
 using DataStructures
 import KahanSummation
 
-function load_data()
-    A = MatrixNetworks.readSMAT("/p/mnt/data/graph-db/snap/soc-LiveJournal1-scc.smat")
-    AI,AJ,AV = findnz(A)
-    d = vec(sum(A;dims=2))
-    n = size(A,1)
-    Pt = sparse(AJ,AI,AV./d[AI],n,n) # form the column-stochastic version of P
-    return A, Pt
-end
-
-function _applyv!(x::Vector{T}, v::Integer,
-                 alpha::T, gamma::T) where T
-    @simd for i in 1:length(x)
-        @inbounds x[i] *= alpha
-    end
-    x[v] += gamma
-end
-
 function push_method2!(x::Vector{T}, delta, r,
     P, alpha::T, v, tol::T,
     maxiter::Int) where T
@@ -66,7 +49,7 @@ simple_pushmethod2(P, alpha, v::Int, tol) = push_method2!(
     Vector{Float64}(undef, size(P,1)), P, alpha, v, tol, 200)
 simple_pushmethod2(P, alpha, v::Int) = simple_pushmethod2(P,alpha,v,1.0-1.0/size(P,1))
 
-@time x = simple_pushmethod2(Pt, 0.85, 1)
+#@time x = simple_pushmethod2(Pt, 0.85, 1)
 
 ################# Need to improve #######################
 function push_method3!(x::Vector{T}, delta, r,
@@ -112,6 +95,6 @@ end
 simple_pushmethod3(P, alpha, v::Int, tol) = push_method3!(
     Vector{Float64}(undef, size(P,1)), Vector{Float64}(undef, size(P,1)),
     Vector{Float64}(undef, size(P,1)), P, alpha, v, tol)
-simple_pushmethod3(P, alpha, v::Int) = simple_pushmethod3(P, alpha, v, (1.0 - 1.0 / size(P,1)))
+simple_pushmethod3(P, alpha, v::Int) = simple_pushmethod3(P, alpha, v, (1.0 - min((1.0)/size(P,1), 1.0e-6)))
 
-@time x = simple_pushmethod3(Pt, 0.85, 1)
+#@time x = simple_pushmethod3(Pt, 0.85, 1)
