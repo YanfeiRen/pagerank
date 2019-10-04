@@ -46,7 +46,7 @@ end
 FastGaussSeidel(A, id, d, alpha, v::Int, tol) = FastGaussSeidel!(
    Vector{Float64}(undef, size(A,1)),
    A, id, d, alpha, v, tol, ceil(Int, log(tol)/log(alpha)))
-FastGaussSeidel(A, id, d, alpha, v::Int) = FastGaussSeidel(A, id, d,alpha,v,min((1.0-alpha)/size(P,1), 1.0e-6))
+FastGaussSeidel(A, id, d, alpha, v::Int) = FastGaussSeidel(A, id, d,alpha,v,min((1.0-alpha)/size(A,1), 1.0e-6))
 #d = vec(sum(A,dims=2))
 #id = 1.0 ./d
 #@time x = FastGaussSeidel(A, id, d, 0.85, 1)
