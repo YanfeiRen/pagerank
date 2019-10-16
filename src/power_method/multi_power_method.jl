@@ -1,8 +1,6 @@
 using StaticArrays
 using LinearAlgebra
 using SparseArrays
-using LinearAlgebra
-using StaticArrays
 using DataStructures
 using MatrixNetworks
 

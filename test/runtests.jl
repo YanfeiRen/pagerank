@@ -1,6 +1,7 @@
 using Test
 using MatrixNetworks
 using LinearAlgebra
+using StaticArrays
 # directly include the source
 include("../src/ManyPagerank.jl")
 
@@ -30,12 +31,14 @@ function invbased_solution(A, α, k)
         return max.(X.*A,L.*X)
 end
 
-
-@testset "simple_pagerank" begin
-  A = load_matrix_network("airports")
-  fill!(A.nzval, 1.0)
-  A,Pt = ManyPagerank.normalize_data(A)
-  pr = seeded_pagerank(A,0.85,1,1/1e6)
-  x = ManyPagerank.simple_pagerank(Pt',0.85,1)
-  @test norm(pr./sum(pr)-x./sum(x),1) <= 1/1e6
+function _unpack(v::Vector{T}) where T <: SArray
+  n = length(T)
+  X = zeros(eltype(T),length(v),n)
+  for i in 1:length(v)
+    X[i,:] .= v[i]
+  end
+  return X
 end
+
+
+include("test_power_method.jl")
