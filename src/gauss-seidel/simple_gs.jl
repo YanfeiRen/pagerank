@@ -10,6 +10,7 @@ function FastGaussSeidel!(x::Vector{T}, A, id, d, alpha::T, v, tol::T, maxiter::
 	fill!(x, 0.0)
 	xinit = x
 	ialpha = 1 - alpha
+	change_scale = alpha/(1-alpha) # this is the scale of the change to get error
 	rowid = rowvals(A)
 	nzeros = nonzeros(A)
 	for iter = 1: maxiter
@@ -20,9 +21,6 @@ function FastGaussSeidel!(x::Vector{T}, A, id, d, alpha::T, v, tol::T, maxiter::
 		   Pii = zero(T)
 		   for nz in nzrange(A,i)
 			   tmpsum += alpha*x[rowid[nz]]
-			   if rowid[nz] == i
-			      Pii += alpha
-			   end
 		   end
 		   if i == v
 		   	tmpsum += ialpha
@@ -31,7 +29,7 @@ function FastGaussSeidel!(x::Vector{T}, A, id, d, alpha::T, v, tol::T, maxiter::
 		   x[i] = xi
 		   delta += abs(recordx_i - tmpsum)
 	   end
-	   if delta*ialpha < tol
+	   if change_scale*delta < tol
 		   println("converged on iter $iter")
 		   break
 	   end
@@ -45,7 +43,7 @@ function FastGaussSeidel!(x::Vector{T}, A, id, d, alpha::T, v, tol::T, maxiter::
 end
 FastGaussSeidel(A, id, d, alpha, v::Int, tol) = FastGaussSeidel!(
    Vector{Float64}(undef, size(A,1)),
-   A, id, d, alpha, v, tol, ceil(Int, log(tol)/log(alpha)))
+   A, id, d, alpha, v, tol, 2*ceil(Int, log(tol)/log(alpha)))
 FastGaussSeidel(A, id, d, alpha, v::Int) = FastGaussSeidel(A, id, d,alpha,v,min((1.0-alpha)/size(A,1), 1.0e-6))
 #d = vec(sum(A,dims=2))
 #id = 1.0 ./d

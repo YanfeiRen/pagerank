@@ -14,6 +14,7 @@ function GaussSeidelMulti!(x::Vector{T},
     n = size(P,1)
     fill!(x, zero(T))
     xinit = x
+    change_scale = alpha/(1-alpha)
     ialpha = 1 - alpha
     rowid = rowvals(P)
     nzeros = nonzeros(P)
@@ -42,7 +43,7 @@ function GaussSeidelMulti!(x::Vector{T},
            x[i] = tmpsum / (1 - alpha*Pii)
            delta += abs.(recordx_i - x[i])
         end
-        if all(delta*ialpha .< tol)
+        if all(change_scale*ialpha .< tol)
            println("converged on iter $iter")
            break
         end
@@ -59,4 +60,4 @@ GaussSeidelMultiPR(P, alpha, v, tol) = GaussSeidelMulti!(
 
 GaussSeidelMultiPR(P, alpha, v) = GaussSeidelMultiPR(P,alpha,v,min((1.0-alpha)/size(P,1), 1.0e-6))
 
-#@time y = GaussSeidelMultiPR(Pt', 0.85, SVector((1 : 8)...))
+#@time y = GaussSeidelMultiPR(Pt, 0.85, SVector((1 : 8)...))

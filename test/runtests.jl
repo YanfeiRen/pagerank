@@ -40,5 +40,5 @@ function _unpack(v::Vector{T}) where T <: SArray
   return X
 end
 
-
+include("test_gauss_seidel.jl")
 include("test_power_method.jl")
