@@ -8,6 +8,62 @@ function _is_in_svec(x::SVector{N,T},k::T) where {N,T}
     return minimum(abs.(x-k))==0
 end
 
+function multi_gauss_seidel_from_zero!(x::Vector{T},
+      A, id, d, alpha, v, tol,
+      maxiter::Int) where T
+  n = size(A,1)
+  z = zero(T)
+	fill!(x, z)
+	ialpha = 1 - alpha
+	endsum = 1 - tol
+  evs = [ SVector{length(v),Float64}((i == j ? ialpha : 0 for j=1:length(v))...) for i in v ]
+	rowid = rowvals(A)
+	nzeros = nonzeros(A)
+	for iter = 1: maxiter
+		delta = z
+	  for i = 1:n
+		  tmpsum = 0.0
+		  for nz in nzrange(A,i)
+		    tmpsum += alpha*x[rowid[nz]]
+		  end
+      if _is_in_svec(v,i)
+          for ind = 1:length(v)
+              if i == v[ind]
+                tmpsum += evs[ind]
+                break
+              end
+          end
+      end
+		  delta += tmpsum
+		  xi = tmpsum*id[i]
+		  x[i] = xi
+	  end
+	  if all(delta .>= endsum)
+		  println("converged on iter $iter")
+		  break
+	  end
+	end
+	x .*= d
+	#x /= sum(x) # make sure it sums to 1
+  is = 1 ./ sum(x) # compute the inverse sum
+  map!(x -> x .* is, x, x) # do the inverse
+	return x
+end
+
+multi_gauss_seidel_from_zero(A, alpha, v, tol) = multi_gauss_seidel_from_zero!(
+  Vector{SVector{length(v),Float64}}(undef, size(A,1)),
+  A,1.0 ./vec(sum(A,dims=2)), vec(sum(A,dims=2)), alpha, v, tol,
+  ceil(Int, log(tol)/log(alpha)))
+
+multi_gauss_seidel_from_zero(A, alpha, v) = multi_gauss_seidel_from_zero(A,alpha,v,min((1.0-alpha)/size(A,1), 1.0e-6))
+
+GaussSeidelMultiPR(P, alpha, v, tol) = GaussSeidelMulti!(
+    Vector{SVector{length(v),Float64}}(undef, size(P,1)),
+    P, alpha, v, tol, ceil(Int, log(tol)/log(alpha)))
+
+GaussSeidelMultiPR(P, alpha, v) = GaussSeidelMultiPR(P,alpha,v,min((1.0-alpha)/size(P,1), 1.0e-6))
+
+
 function GaussSeidelMulti!(x::Vector{T},
     P, alpha, v, tol,
     maxiter::Int) where T
