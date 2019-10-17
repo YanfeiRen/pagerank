@@ -6,6 +6,9 @@
   pr = seeded_pagerank(A,0.85,1,1/1e6)
   x = ManyPagerank.simple_pagerank(Pt',0.85,1)
   @test norm(pr./sum(pr)-x./sum(x),1) <= 1/1e6
+
+  x = ManyPagerank.fast_pagerank_power(A,0.85,1)
+  @test norm(pr./sum(pr)-x./sum(x),1) <= 1/1e6
 end
 
 
