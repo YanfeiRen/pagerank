@@ -7,5 +7,6 @@ include("gauss-seidel/simd_gs.jl")
 include("gauss-seidel/simple_gs.jl")
 include("push_method/simple_push_method.jl")
 include("push_method/multi_push_method.jl")
+include("push_method/cyclic_push_method.jl")
 
 end
