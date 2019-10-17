@@ -34,8 +34,7 @@ function warmup_methods()
     d = vec(sum(A,dims=2))
     id = 1.0 ./d
     x = ManyPagerank.FastGaussSeidel(A, id, d, 0.85, 1)
-
-    #y = ManyPagerank.GaussSeidelMultiPR(Pt', 0.85, SVector((1 : 8)...))
+    y = ManyPagerank.GaussSeidelMultiPR(Pt, 0.85, SVector((1 : 8)...))
     #x = ManyPagerank.multi_pagerank(Pt', 0.85, SVector((1 : 8)...))
 end
 
@@ -51,8 +50,7 @@ function run_methods(graphfile::AbstractString)
     d = vec(sum(A,dims=2))
     id = 1.0 ./d
     @time x = ManyPagerank.FastGaussSeidel(A, id, d, 0.85, 1)
-
-    #@time y = ManyPagerank.GaussSeidelMultiPR(Pt', 0.85, SVector((1 : 8)...))
+    @time y = ManyPagerank.GaussSeidelMultiPR(Pt, 0.85, SVector((1 : 8)...))
 end
 
 function main()
