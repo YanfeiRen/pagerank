@@ -13,7 +13,6 @@ function FastGaussSeidel!(x::Vector{T}, A, id, d, alpha::T, v, tol::T, maxiter::
 	ialpha = 1 - alpha
 	change_scale = alpha/(1-alpha) # this is the scale of the change to get error
 	rowid = rowvals(A)
-	nzeros = nonzeros(A)
 	for iter = 1: maxiter
 	   delta = 0.0
 	   for i = 1:n
@@ -53,7 +52,6 @@ function FastGaussSeidelFromZero!(x::Vector{T}, A, id, d, alpha::T, v, tol::T, m
 	ialpha = 1 - alpha
 	endtol = 1 - tol
 	rowid = rowvals(A)
-	nzeros = nonzeros(A)
 	for iter = 1: maxiter
 		delta = 0.0
 	   for i = 1:n
