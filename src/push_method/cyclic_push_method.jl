@@ -39,11 +39,11 @@ function cyclic_push_method!(x::Vector{T}, r, At, id::Vector, alpha::T, v::Int, 
     end
     xinit # always return xinit
 end
-cyclic_push_method(At, alpha, v::Int, tol) = cyclic_push_method!(
+cyclic_push_method(At::SparseMatrixCSC, alpha, v::Int, tol) = cyclic_push_method!(
     Vector{Float64}(undef, size(At,1)),
     Vector{Float64}(undef, size(At,1)),
     At, 1.0 ./vec(sum(At,dims=1)), alpha, v, tol, 2*ceil(Int, log(tol)/log(alpha)))
-cyclic_push_method(At, alpha, v::Int) = cyclic_push_method(At, alpha, v, min((1.0)/size(At,1), 1.0e-6))
+cyclic_push_method(At::SparseMatrixCSC, alpha, v::Int) = cyclic_push_method(At, alpha, v, min((1.0)/size(At,1), 1.0e-6))
 
 function cyclic_multi_push_method!(x::Vector{T}, r::Vector{T}, At, id::Vector,
           alpha, v, tol, maxiter::Int) where T
@@ -85,11 +85,11 @@ function cyclic_multi_push_method!(x::Vector{T}, r::Vector{T}, At, id::Vector,
     xinit # always return xinit
 end
 
-cyclic_multi_push_method(At, alpha, v, tol) = cyclic_multi_push_method!(
+cyclic_multi_push_method(At::SparseMatrixCSC, alpha, v, tol) = cyclic_multi_push_method!(
     Vector{SVector{length(v),Float64}}(undef, size(At,1)),
     Vector{SVector{length(v),Float64}}(undef, size(At,1)),
     At, 1.0 ./vec(sum(At,dims=1)), alpha, v, tol, 2*ceil(Int, log(tol)/log(alpha)))
-cyclic_multi_push_method(At, alpha, v) = cyclic_multi_push_method(At, alpha, v, min((1.0)/size(At,1), 1.0e-6))
+cyclic_multi_push_method(At::SparseMatrixCSC, alpha, v) = cyclic_multi_push_method(At, alpha, v, min((1.0)/size(At,1), 1.0e-6))
 
 
 #@time x = simple_pushmethod3(A, 0.85, 1)
