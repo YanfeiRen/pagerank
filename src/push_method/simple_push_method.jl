@@ -55,4 +55,6 @@ simple_push_method(A, alpha, v::Int, tol) = simple_push_method!(
     CircularDeque{Int}(size(A,1)), A, alpha, v, tol)
 simple_push_method(A, alpha, v::Int) = simple_push_method(A, alpha, v, min((1.0)/size(A,1), 1.0e-6))
 
+
+
 #@time x = simple_pushmethod3(A, 0.85, 1)
