@@ -13,6 +13,7 @@ function FastGaussSeidel!(x::Vector{T}, A, id, d, alpha::T, v, tol::T, maxiter::
 	ialpha = 1 - alpha
 	change_scale = alpha/(1-alpha) # this is the scale of the change to get error
 	rowid = rowvals(A)
+	lastiter = -1
 	for iter = 1: maxiter
 	   delta = 0.0
 	   for i = 1:n
@@ -30,7 +31,7 @@ function FastGaussSeidel!(x::Vector{T}, A, id, d, alpha::T, v, tol::T, maxiter::
 		   delta += abs(recordx_i - tmpsum)
 	   end
 	   if change_scale*delta < tol
-		   println("converged on iter $iter")
+		   lastiter = iter
 		   break
 	   end
 	end
@@ -39,7 +40,7 @@ function FastGaussSeidel!(x::Vector{T}, A, id, d, alpha::T, v, tol::T, maxiter::
 	if !(x === xinit)
 	   xinit[:] .= x
 	end
-	xinit
+	xinit, lastiter
 end
 FastGaussSeidel(A, id, d, alpha, v::Int, tol) = FastGaussSeidel!(
    Vector{Float64}(undef, size(A,1)),
@@ -52,6 +53,7 @@ function FastGaussSeidelFromZero!(x::Vector{T}, A, id, d, alpha::T, v, tol::T, m
 	ialpha = 1 - alpha
 	endtol = 1 - tol
 	rowid = rowvals(A)
+	lastiter = -1
 	for iter = 1: maxiter
 		delta = 0.0
 	   for i = 1:n
@@ -67,13 +69,13 @@ function FastGaussSeidelFromZero!(x::Vector{T}, A, id, d, alpha::T, v, tol::T, m
 		   x[i] = xi
 	   end
 	   if delta >= endtol
-		   println("converged on iter $iter")
+		   lastiter = iter
 		   break
 	   end
 	end
 	x .*= d
 	x ./= sum(x) # make sure it sums to 1
-	return x
+	return x, lastiter
 end
 FastGaussSeidelFromZero(A, id, d, alpha, v::Int, tol) = FastGaussSeidelFromZero!(
    Vector{Float64}(undef, size(A,1)),

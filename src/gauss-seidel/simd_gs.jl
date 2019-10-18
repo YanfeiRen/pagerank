@@ -19,10 +19,11 @@ function multi_gauss_seidel_from_zero!(x::Vector{T},
   evs = [ SVector{length(v),Float64}((i == j ? ialpha : 0 for j=1:length(v))...) for i in v ]
 	rowid = rowvals(A)
 	nzeros = nonzeros(A)
+  lastiter = -1
 	for iter = 1: maxiter
 		delta = z
 	  for i = 1:n
-		  tmpsum = 0.0
+		  tmpsum = z
 		  for nz in nzrange(A,i)
 		    tmpsum += alpha*x[rowid[nz]]
 		  end
@@ -39,7 +40,7 @@ function multi_gauss_seidel_from_zero!(x::Vector{T},
 		  x[i] = xi
 	  end
 	  if all(delta .>= endsum)
-		  println("converged on iter $iter")
+      lastiter = iter
 		  break
 	  end
 	end
@@ -47,7 +48,7 @@ function multi_gauss_seidel_from_zero!(x::Vector{T},
 	#x /= sum(x) # make sure it sums to 1
   is = 1 ./ sum(x) # compute the inverse sum
   map!(x -> x .* is, x, x) # do the inverse
-	return x
+	return x, lastiter
 end
 
 multi_gauss_seidel_from_zero(A, alpha, v, tol) = multi_gauss_seidel_from_zero!(
@@ -75,6 +76,7 @@ function GaussSeidelMulti!(x::Vector{T},
     rowid = rowvals(P)
     nzeros = nonzeros(P)
     evs = [ SVector{length(v),Float64}((i == j ? ialpha : 0 for j=1:length(v))...) for i in v ]
+    lastiter = -1
     for iter = 1: maxiter
         delta = zero(T)
         for i = 1:n
@@ -99,20 +101,20 @@ function GaussSeidelMulti!(x::Vector{T},
            x[i] = tmpsum / (1 - alpha*Pii)
            delta += abs.(recordx_i - x[i])
         end
-        if all(change_scale*ialpha .< tol)
-           println("converged on iter $iter")
+        if all(change_scale*delta .< tol)
+           lastiter = iter
            break
         end
     end
     if !(x === xinit)
         xinit[:] .= x
     end
-    xinit
+    xinit,lastiter
 end
 
 GaussSeidelMultiPR(P, alpha, v, tol) = GaussSeidelMulti!(
     Vector{SVector{length(v),Float64}}(undef, size(P,1)),
-    P, alpha, v, tol, ceil(Int, log(tol)/log(alpha)))
+    P, alpha, v, tol, 2*ceil(Int, log(tol)/log(alpha)))
 
 GaussSeidelMultiPR(P, alpha, v) = GaussSeidelMultiPR(P,alpha,v,min((1.0-alpha)/size(P,1), 1.0e-6))
 
