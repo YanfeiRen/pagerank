@@ -7,17 +7,22 @@ using MatrixNetworks
 function pagerank_power_multi!(x::Vector{T}, y::Vector{T},
     P, alpha, v, tol,
     maxiter::Int) where T
+    z = zero(T)
     ialpha = 1.0/(1.0-alpha)
     xinit = x
     fill!(x, zero(T))
     _applyv!(x,v,0.0,ones(T)) # iteration number 0
     lastiter = -1
+    evs = [ SVector{length(v),Float64}((i == j ? 1 : 0 for j=1:length(v))...) for i in v ]
     for iter=1:maxiter
-        mul!(y,P,x,1.0,0.0)
-        gamma = 1.0-alpha*sum(y)
+        mul!(y,P,x,alpha,0.0)
+        gamma = 1.0-sum(y)
 
-        delta = zero(T)
-        _applyv!(y,v,alpha,gamma)
+        for i in 1:length(v)
+          y[v[i]] += gamma[i]*evs[i]
+        end
+
+        delta = z
         @simd for i=1:length(x)
             @inbounds delta += abs.(y[i] - x[i])
         end
@@ -102,7 +107,3 @@ fast_multi_pagerank_power(A, alpha, v, tol) = fast_multi_pagerank_power!(
     Vector{SVector{length(v),Float64}}(undef, size(A,1)),
     A, 1.0./vec(sum(A,dims=2)), alpha, v, tol, 2*ceil(Int, log(tol)/log(alpha)))
 fast_multi_pagerank_power(A, alpha, v) = fast_multi_pagerank_power(A,alpha,v,min((1.0-alpha)/size(A,1), 1.0e-6))
-
-
-#A, Pt = load_data()
-#@time y = multi_pagerank(Pt', 0.85, SVector((1 : 8)...))
