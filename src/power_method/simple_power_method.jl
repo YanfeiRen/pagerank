@@ -59,7 +59,7 @@ function fast_pagerank_power!(x::Vector{T}, y::Vector{T},
   lastiter = -1
   @inbounds for iter=1:maxiter
     for i = 1:size(A,1)
-      tmpval = 0
+      tmpval = zero(T)
       for nz in nzrange(A,i)
         j = rowid[nz]
         tmpval += x[j]*id[j]
@@ -69,7 +69,7 @@ function fast_pagerank_power!(x::Vector{T}, y::Vector{T},
     end
     y[v] += ialpha
     # we know there is nothing dangling here... so sum(y) = alpha
-    delta = 0.0
+    delta = zero(Float64)
     @simd for i=1:length(x)
         @inbounds delta += abs(y[i] - x[i]) # TODO implement Kahan summation
     end
