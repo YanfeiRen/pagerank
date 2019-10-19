@@ -74,3 +74,94 @@ function warmup_methods()
     x = ManyPagerank.cyclic_multi_push_method(At, 0.85, SVector((1 : 8)...))
     @time ManyPagerank.cyclic_multi_push_method(At, 0.85, SVector((1 : 8)...))
 end
+
+function benchmark_function_simple(myfunction::Function, multi::Bool, A, alpha)
+    nthreads = Threads.nthreads()
+    totalvecs = zeros(Int, nthreads)
+    n = size(A, 1)
+    nbatches = floor(Int, n/nthreads)
+    if multi
+        nbatches = floor(Int, nbatches/8)
+    end
+    stime = time()
+    Threads.@threads for i=1:nthreads
+        for batch = 1:nbatches
+            if multi
+                myfunction(A, alpha, SVector(((i-1)*nbatches+(batch-1)*8+1 : (i-1)*nbatches+batch*8)...))
+            else
+                myfunction(A, alpha, (i-1)*nbatches+batch)
+            end
+            if time() - stime <= 14.4*60
+                if multi
+                    totalvecs[i] += 8
+                else
+                    totalvecs[i] += 1
+                end
+            else
+                break
+            end
+        end
+    end
+    return sum(totalvecs)
+end
+
+function benchmark_function_with_d(myfunction::Function, A, id, d, alpha)
+    nthreads = Threads.nthreads()
+    totalvecs = zeros(Int, nthreads)
+    n = size(A, 1)
+    nbatches = floor(Int, n/nthreads)
+    stime = time()
+    Threads.@threads for i=1:nthreads
+        for batch = 1:nbatches
+            myfunction(A, id, d, alpha, (i-1)*nbatches+batch)
+            if time() - stime <= 14.4*60
+                totalvecs[i] += 1
+            else
+                break
+            end
+        end
+    end
+    return sum(totalvecs)
+end
+
+function threaded_benchmark(graphfile::AbstractString)
+    A,At,Pt,d,id = load_data(graphfile)
+    benchmarks = Dict{String,Any}()
+
+    println("Threaded Benchmarking Starts....")
+
+    println("Benchmarking simple_pagerank for power_method")
+    benchmarks["power_simple"] = benchmark_function_simple(ManyPagerank.simple_pagerank, false, Pt', 0.85)
+
+    println("Benchmarking fast_pagerank_power for power_method")
+    benchmarks["power_fast"] = benchmark_function_simple(ManyPagerank.fast_pagerank_power, false, A, 0.85)
+
+    println("Benchmarking multi_pagerank for power_method")
+    benchmarks["power_multi"] = benchmark_function_simple(ManyPagerank.multi_pagerank, true, Pt', 0.85)
+
+    println("Benchmarking FastGaussSeidel")
+    benchmarks["gs_fast"] = benchmark_function_with_d(ManyPagerank.FastGaussSeidel, A, id, d, 0.85)
+
+    println("Benchmarking FastGaussSeidelFromZero")
+    benchmarks["gs_fast_zero"] = benchmark_function_with_d(ManyPagerank.FastGaussSeidelFromZero, A, id, d, 0.85)
+
+    println("Benchmarking GaussSeidelMultiPR")
+    benchmarks["gs_multi"] = benchmark_function_simple(ManyPagerank.GaussSeidelMultiPR, true, Pt, 0.85)
+
+    println("Benchmarking fast_gauss")
+    benchmarks["gs_multi_zero"] = benchmark_function_simple(ManyPagerank.multi_gauss_seidel_from_zero, true, A, 0.85)
+
+    println("Benchmarking simple_push_method")
+    benchmarks["push_simple"] = benchmark_function_simple(ManyPagerank.simple_push_method, false, At, 0.85)
+
+    println("Benchmarking multi_push_method")
+    benchmarks["push_multi"] = benchmark_function_simple(ManyPagerank.multi_push_method, true, At, 0.85)
+
+    println("Benchmarking cyclic_push_method")
+    benchmarks["push_cyclic"] = benchmark_function_simple(ManyPagerank.cyclic_push_method, false, At, 0.85)
+
+    println("Benchmarking cyclic_multi_push_method")
+    benchmarks["push_cyclic_multi"] = benchmark_function_simple(ManyPagerank.cyclic_multi_push_method, true, At, 0.85)
+
+    return benchmarks
+end
