@@ -13,7 +13,7 @@ function pagerank_power!(x::Vector{T}, y::Vector{T},
     fill!(x, 0.0)
     _applyv!(x,v,0.0,1.0) # iteration number 0
     lastiter = -1
-    for iter=1:maxiter
+    @inbounds for iter=1:maxiter
         mul!(y,P,x)
         gamma = 1.0-alpha*sum(y)
         delta = 0.0
@@ -57,8 +57,7 @@ function fast_pagerank_power!(x::Vector{T}, y::Vector{T},
   invialpha = 1/(1-alpha)
   rowid = rowvals(A)
   lastiter = -1
-  for iter=1:maxiter
-    fill!(y,0)
+  @inbounds for iter=1:maxiter
     for i = 1:size(A,1)
       tmpval = 0
       for nz in nzrange(A,i)

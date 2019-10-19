@@ -19,7 +19,7 @@ function cyclic_push_method!(x::Vector{T}, r, At, id::Vector, alpha::T, v::Int, 
     r[v] += (1-alpha)
     rowid = rowvals(At)
 
-    for iter=1:maxiter
+    @inbounds for iter=1:maxiter
       for i=1:n
         ri = r[i]
         x[i] += ri
@@ -64,7 +64,7 @@ function cyclic_multi_push_method!(x::Vector{T}, r::Vector{T}, At, id::Vector,
 
     rowid = rowvals(At)
 
-    for iter=1:maxiter
+    @inbounds for iter=1:maxiter
       for i=1:n
         ri = r[i]
         x[i] += ri

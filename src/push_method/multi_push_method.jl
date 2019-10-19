@@ -23,7 +23,7 @@ function multi_push_method!(x::Vector{T}, r::Vector{T},
     end
 
     rowid = rowvals(A)
-    while !(isempty(Q))
+    @inbounds while !(isempty(Q))
       i = front(Q)
       popfirst!(Q)
       ri = r[i]

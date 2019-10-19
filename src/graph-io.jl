@@ -1,4 +1,3 @@
-
 using SparseArrays
 function normalize_data(A::SparseMatrixCSC)
     @assert(is_connected((A)))

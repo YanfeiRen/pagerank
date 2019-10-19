@@ -20,7 +20,7 @@ function multi_gauss_seidel_from_zero!(x::Vector{T},
 	rowid = rowvals(A)
 	nzeros = nonzeros(A)
   lastiter = -1
-	for iter = 1: maxiter
+	@inbounds for iter = 1: maxiter
 		delta = z
 	  for i = 1:n
 		  tmpsum = z
@@ -77,7 +77,7 @@ function GaussSeidelMulti!(x::Vector{T},
     nzeros = nonzeros(P)
     evs = [ SVector{length(v),Float64}((i == j ? ialpha : 0 for j=1:length(v))...) for i in v ]
     lastiter = -1
-    for iter = 1: maxiter
+    @inbounds for iter = 1: maxiter
         delta = zero(T)
         for i = 1:n
            tmpsum = 0.0 .* v

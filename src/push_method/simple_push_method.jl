@@ -21,7 +21,7 @@ function simple_push_method!(x::Vector{T}, r, Q, A, alpha::T, v::Int, tol::T) wh
     r[v] += (1-alpha)
     rowid = rowvals(A)
     push!(Q, v)
-    while !(isempty(Q))
+    @inbounds while !(isempty(Q))
         i = front(Q)
         popfirst!(Q)
         ri = r[i]
