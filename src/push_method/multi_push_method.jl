@@ -18,7 +18,7 @@ function multi_push_method!(x::Vector{T}, r::Vector{T},
 
     # compute r[v] += (1-alpha)
     for i in v
-      r[i] += SVector{length(v),Float64}((i == j ? ialpha : 0 for j=1:length(v))...)
+      r[i] += SVector{length(v),Float64}([i == j ? ialpha : 0 for j=1:length(v)])
       push!(Q, i)
     end
 

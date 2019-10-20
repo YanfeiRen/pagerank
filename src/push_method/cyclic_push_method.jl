@@ -59,7 +59,7 @@ function cyclic_multi_push_method!(x::Vector{T}, r::Vector{T}, At, id::Vector,
 
     #r[v] += (1-alpha)
     for i in v
-      r[i] += SVector{length(v),Float64}((i == j ? ialpha : 0 for j=1:length(v))...)
+      r[i] += SVector{length(v),Float64}([i == j ? ialpha : 0 for j=1:length(v)])
     end
 
     rowid = rowvals(At)

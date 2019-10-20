@@ -16,7 +16,7 @@ function multi_gauss_seidel_from_zero!(x::Vector{T},
 	fill!(x, z)
 	ialpha = 1 - alpha
 	endsum = 1 - tol
-  evs = [ SVector{length(v),Float64}((i == j ? ialpha : 0 for j=1:length(v))...) for i in v ]
+	evs = [ SVector{length(v),Float64}([i == j ? ialpha : 0 for j=1:length(v)]) for i in v ]
 	rowid = rowvals(A)
 	nzeros = nonzeros(A)
   lastiter = -1
@@ -75,7 +75,7 @@ function GaussSeidelMulti!(x::Vector{T},
     ialpha = 1 - alpha
     rowid = rowvals(P)
     nzeros = nonzeros(P)
-    evs = [ SVector{length(v),Float64}((i == j ? ialpha : 0 for j=1:length(v))...) for i in v ]
+    evs = [ SVector{length(v),Float64}([i == j ? ialpha : 0 for j=1:length(v)]) for i in v ]
     lastiter = -1
     @inbounds for iter = 1: maxiter
         delta = zero(T)

@@ -13,7 +13,7 @@ function pagerank_power_multi!(x::Vector{T}, y::Vector{T},
     fill!(x, zero(T))
     _applyv!(x,v,0.0,ones(T)) # iteration number 0
     lastiter = -1
-    evs = [ SVector{length(v),Float64}((i == j ? 1 : 0 for j=1:length(v))...) for i in v ]
+    evs = [ SVector{length(v),Float64}([i == j ? 1 : 0 for j=1:length(v)]) for i in v ]
     @inbounds for iter=1:maxiter
         mul!(y,P,x,alpha,0.0)
         gamma = 1.0-sum(y)
@@ -44,9 +44,10 @@ function _applyv!(x::Vector, v::SArray, alpha::T, gamma) where T
     end
 
     for i in 1:length(v)
-      ev = SVector{length(v),T}((i == j ? 1 : 0 for j=1:length(v))...)
+      ev = SVector{length(v),T}([i == j ? 1 : 0 for j=1:length(v)])
       x[v[i]] += gamma[i]*ev
     end
+
 end
 
 multi_pagerank(P, alpha, v, tol) = pagerank_power_multi!(
