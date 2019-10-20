@@ -28,7 +28,8 @@ using BenchmarkTools
 function threaded_benchmark(graphfile::AbstractString, maxtime::Float64=14.4*60)
     gdata = load_data(graphfile)
     benchmarks = Dict{String,Int}()
-    vex = SVector((1:8)...)
+    vex8 = SVector((1:8)...)
+    vex16 = SVector((1:16)...)
     alpha = 0.85
 
     println("Benchmarking simple_pagerank for power_method")
@@ -39,9 +40,13 @@ function threaded_benchmark(graphfile::AbstractString, maxtime::Float64=14.4*60)
     benchmarks["power_fast"] = benchmark_method_single(maxtime, setup_call_fast_power, gdata, alpha, 1)
     println(benchmarks["power_fast"])
 
-    println("Benchmarking multi_pagerank for power_method")
-    benchmarks["power_multi"] = benchmark_method_multi(maxtime, setup_call_simple_power_multi, gdata, alpha, vex)
-    println(benchmarks["power_multi"])
+    println("Benchmarking multi_pagerank for power_method - 8")
+    benchmarks["power_multi_8"] = benchmark_method_multi(maxtime, setup_call_simple_power_multi, gdata, alpha, vex8)
+    println(benchmarks["power_multi_8"])
+
+    println("Benchmarking multi_pagerank for power_method - 16")
+    benchmarks["power_multi_16"] = benchmark_method_multi(maxtime, setup_call_simple_power_multi, gdata, alpha, vex16)
+    println(benchmarks["power_multi_16"])
 
     println("Benchmarking FastGaussSeidel")
     benchmarks["gs_fast"] = benchmark_method_single(maxtime, setup_call_gs_fast, gdata, alpha, 1)
@@ -51,29 +56,47 @@ function threaded_benchmark(graphfile::AbstractString, maxtime::Float64=14.4*60)
     benchmarks["gs_fast_zero"] = benchmark_method_single(maxtime, setup_call_gs_from_zero, gdata, alpha, 1)
     println(benchmarks["gs_fast_zero"])
 
-    println("Benchmarking GaussSeidelMultiPR")
-    benchmarks["gs_multi"] = benchmark_method_multi(maxtime, setup_call_gs_multi, gdata, alpha, vex)
-    println(benchmarks["gs_multi"])
+    println("Benchmarking GaussSeidelMultiPR-8")
+    benchmarks["gs_multi_8"] = benchmark_method_multi(maxtime, setup_call_gs_multi, gdata, alpha, vex8)
+    println(benchmarks["gs_multi_8"])
 
-    println("Benchmarking gs_multi_zero")
-    benchmarks["gs_multi_zero"] = benchmark_method_multi(maxtime, setup_call_gs_multi_from_zero, gdata, alpha, vex)
-    println(benchmarks["gs_multi_zero"])
+    println("Benchmarking GaussSeidelMultiPR-16")
+    benchmarks["gs_multi_16"] = benchmark_method_multi(maxtime, setup_call_gs_multi, gdata, alpha, vex16)
+    println(benchmarks["gs_multi_16"])
+
+
+    println("Benchmarking gs_multi_zero 8")
+    benchmarks["gs_multi_zero"] = benchmark_method_multi(maxtime, setup_call_gs_multi_from_zero, gdata, alpha, vex8)
+    println(benchmarks["gs_multi_zero_8"])
+
+    println("Benchmarking gs_multi_zero 16")
+    benchmarks["gs_multi_zero"] = benchmark_method_multi(maxtime, setup_call_gs_multi_from_zero, gdata, alpha, vex16)
+    println(benchmarks["gs_multi_zero_16"])
 
     println("Benchmarking simple_push_method")
     benchmarks["push_simple"] = benchmark_method_single(maxtime, setup_call_simple_push_method, gdata, alpha, 1)
     println(benchmarks["push_simple"])
 
-    println("Benchmarking multi_push_method")
-    benchmarks["push_multi"] = benchmark_method_multi(maxtime, setup_call_multi_push_method, gdata, alpha, vex)
-    println(benchmarks["push_multi"])
+    println("Benchmarking multi_push_method - 8")
+    benchmarks["push_multi_8"] = benchmark_method_multi(maxtime, setup_call_multi_push_method, gdata, alpha, vex8)
+    println(benchmarks["push_multi_8"])
+
+    println("Benchmarking multi_push_method - 16")
+    benchmarks["push_multi_16"] = benchmark_method_multi(maxtime, setup_call_multi_push_method, gdata, alpha, vex16)
+    println(benchmarks["push_multi_16"])
 
     println("Benchmarking cyclic_push_method")
     benchmarks["push_cyclic"] = benchmark_method_single(maxtime, setup_call_cyclic_push_method, gdata, alpha, 1)
     println(benchmarks["push_cyclic"])
 
-    println("Benchmarking cyclic_multi_push_method")
-    benchmarks["push_cyclic_multi"] = benchmark_method_multi(maxtime, setup_call_cyclic_multi_push_method, gdata, alpha, vex)
-    println(benchmarks["push_cyclic_multi"])
+    println("Benchmarking cyclic_multi_push_method - 8 ")
+    benchmarks["push_cyclic_multi_8"] = benchmark_method_multi(maxtime, setup_call_cyclic_multi_push_method, gdata, alpha, vex8)
+    println(benchmarks["push_cyclic_multi_8"])
+
+    println("Benchmarking cyclic_multi_push_method - 16 ")
+    benchmarks["push_cyclic_multi_16"] = benchmark_method_multi(maxtime, setup_call_cyclic_multi_push_method, gdata, alpha, vex16)
+    println(benchmarks["push_cyclic_multi_16"])
+
 
     return benchmarks
 end
