@@ -234,7 +234,7 @@ function benchmark_method_multi(maxtime, setupfunction, gdata, alpha, vex)
         # allocate info for each thread
         prfunc, preparams, postparams = setupfunction(gdata...,vex,alpha)
         for batch = 1:nbatches
-            vcur = VType((i-1)*nbatches+(batch-1)*k+1 : (i-1)*nbatches+batch*k))
+            vcur = VType((i-1)*nbatches+(batch-1)*k+1 : (i-1)*nbatches+batch*k)
             prfunc(preparams..., vcur, postparams...)
             if time() - stime <= maxtime
                 totalvecs[i] += k
