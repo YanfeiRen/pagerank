@@ -247,3 +247,37 @@ function benchmark_method_multi(maxtime, setupfunction, gdata, alpha, vex)
     end
     return sum(totalvecs)
 end
+
+
+function benchmark_method_distributed_single(maxtime, setupfunction, gdata, alpha, vex)
+    nthreads = Threads.nthreads()
+    A = gdata[1]
+    n = size(A, 1)
+    k = length(vex)
+
+    nbatches = floor(Int, n/nthreads)
+
+
+    @distributed (+) for i=1:Distributed.nworkers()
+        VType = typeof(vex)
+        prfunc, preparams, postparams = setupfunction(gdata...,vex,alpha)
+        stime = time()
+        for batch = 1:nbatches
+        end
+    end
+end
+    Threads.@threads for i=1:nthreads
+        # allocate info for each thread
+
+        for batch = 1:nbatches
+            vcur = VType((i-1)*nbatches+(batch-1)*k+1 : (i-1)*nbatches+batch*k)
+            prfunc(preparams..., vcur, postparams...)
+            if time() - stime <= maxtime
+                totalvecs[i] += k
+            else
+                break
+            end
+        end
+    end
+    return sum(totalvecs)
+end

@@ -19,25 +19,26 @@ function cyclic_push_method!(x::Vector{T}, r, At, id::Vector, alpha::T, v::Int, 
     r[v] += (1-alpha)
     rowid = rowvals(At)
 
+    lastiter = -1
     @inbounds for iter=1:maxiter
       for i=1:n
         ri = r[i]
         x[i] += ri
         delta += ri
         r[i] = 0
-        rows = nzrange(At,i)
-        deg = size(rows,1)
+        @inbounds rows = nzrange(At,i)
         pushval = alpha*ri*id[i]
-        for nz in rows
+        @inbounds for nz in rows
           w = rowid[nz]
           r[w] += pushval
         end
       end
       if delta >= endtol
+        lastiter = iter
         break
       end
     end
-    xinit # always return xinit
+    xinit, lastiter # always return xinit
 end
 cyclic_push_method(At::SparseMatrixCSC, alpha, v::Int, tol) = cyclic_push_method!(
     Vector{Float64}(undef, size(At,1)),
@@ -58,31 +59,31 @@ function cyclic_multi_push_method!(x::Vector{T}, r::Vector{T}, At, id::Vector,
     #@show delta, endtol, dist
 
     #r[v] += (1-alpha)
-    for i in v
-      r[i] += SVector{length(v),Float64}([i == j ? ialpha : 0 for j=1:length(v)])
+    for i in 1:length(v)
+      r[v[i]] += SVector{length(v),Float64}([i == j ? ialpha : 0 for j=1:length(v)])
     end
 
     rowid = rowvals(At)
-
+    lastiter = -1
     @inbounds for iter=1:maxiter
-      for i=1:n
+      @inbounds for i=1:n
         ri = r[i]
         x[i] += ri
         delta += ri
         r[i] = z
         rows = nzrange(At,i)
-        deg = size(rows,1)
         pushval = alpha*ri*id[i]
-        for nz in rows
+        @inbounds for nz in rows
           w = rowid[nz]
           r[w] += pushval
         end
       end
       if all(delta .>= endtol)
+        lastiter = iter
         break
       end
     end
-    xinit # always return xinit
+    xinit,lastiter # always return xinit
 end
 
 cyclic_multi_push_method(At::SparseMatrixCSC, alpha, v, tol) = cyclic_multi_push_method!(

@@ -17,9 +17,9 @@ function multi_push_method!(x::Vector{T}, r::Vector{T},
     invalpha = 1/(1-alpha)
 
     # compute r[v] += (1-alpha)
-    for i in v
-      r[i] += SVector{length(v),Float64}([i == j ? ialpha : 0 for j=1:length(v)])
-      push!(Q, i)
+    for i in 1:length(v)
+      r[v[i]] += SVector{length(v),Float64}([i == j ? ialpha : 0 for j=1:length(v)])
+      push!(Q, v[i])
     end
 
     rowid = rowvals(A)
