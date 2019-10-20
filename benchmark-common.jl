@@ -94,6 +94,7 @@ function tol_and_maxiter(n::Int, alpha)
   return (tol,maxiter)
 end
 
+
 setup_call_simple_power(A,At,Pt,d,id,v,alpha) =
   (ManyPagerank.pagerank_power!,
     (Vector{Float64}(undef, size(A,1)),
@@ -113,7 +114,7 @@ setup_call_simple_power_multi(A,At,Pt,d,id,v,alpha) =
     Pt', alpha), tol_and_maxiter(size(A,1),alpha))
 
 setup_call_simple_push_method(A,At,Pt,d,id,v,alpha) =
-    (ManyPagerank.pagerank_power!,
+    (ManyPagerank.simple_push_method!,
       (Vector{Float64}(undef, size(A,1)),
       Vector{Float64}(undef, size(A,1)),
       CircularDeque{Int}(size(A,1)), A, alpha),
@@ -125,6 +126,62 @@ setup_call_gs_from_zero(A,At,Pt,d,id,v,alpha) =
     A, id, d, alpha),
     tol_and_maxiter(size(A,1),alpha))
 
+setup_call_gs_fast(A,At,Pt,d,id,v,alpha) =
+    (ManyPagerank.FastGaussSeidel!,
+      (Vector{Float64}(undef, size(A,1)),
+      A, id, d, alpha),
+      tol_and_maxiter(size(A,1),alpha))
+
+setup_call_gs_multi(A,At,Pt,d,id,v,alpha) =
+    (ManyPagerank.GaussSeidelMulti!,
+      (Vector{SVector{length(v),Float64}}(undef, size(A,1)),
+      Pt, alpha), tol_and_maxiter(size(A,1),alpha))
+
+setup_call_gs_multi_from_zero(A,At,Pt,d,id,v,alpha) =
+  (ManyPagerank.multi_gauss_seidel_from_zero!,
+    (Vector{SVector{length(v),Float64}}(undef, size(A,1)),
+    A, id, d, alpha), tol_and_maxiter(size(A,1),alpha))
+
+setup_call_multi_push_method(A,At,Pt,d,id,v,alpha) =
+    (ManyPagerank.multi_push_method!,
+      (Vector{SVector{length(v),Float64}}(undef, size(A,1)),
+      Vector{SVector{length(v),Float64}}(undef, size(A,1)),
+      CircularDeque{Int}(size(A,1)), A, alpha),
+      tol_and_maxiter(size(A,1),alpha)[1])
+
+setup_call_cyclic_push_method(A,At,Pt,d,id,v,alpha) =
+    (ManyPagerank.cyclic_push_method!,
+      (Vector{Float64}(undef, size(A,1)),
+      Vector{Float64}(undef, size(A,1)),
+      At, id, alpha),
+      tol_and_maxiter(size(A,1),alpha))
+
+setup_call_cyclic_multi_push_method(A,At,Pt,d,id,v,alpha) =
+  (ManyPagerank.cyclic_multi_push_method!,
+    (Vector{SVector{length(v),Float64}}(undef, size(A,1)),
+    Vector{SVector{length(v),Float64}}(undef, size(A,1)),
+    At, id, alpha),
+    tol_and_maxiter(size(A,1),alpha))
+
+#= single methods
+
+setup_call_simple_power
+setup_call_fast_power
+setup_call_simple_push_method
+setup_call_gs_from_zero
+setup_call_gs_fast
+setup_call_cyclic_push_method
+
+=#
+
+#= multi methods
+
+setup_call_simple_power_multi
+setup_call_gs_multi
+setup_call_gs_multi_from_zero
+setup_call_multi_push_method
+setup_call_cyclic_multi_push_method
+ =#
 
 #=
 Sample usage
@@ -139,46 +196,20 @@ rval = setup_call_fast_power(gdata...,1,0.85)
 rval[1](rval[2]...,1,rval[3]...)    # run on column 1
 =#
 
-function benchmark_function_simple(myfunction::Function, multi::Bool, A, alpha)
+function benchmark_method_single(maxtime, setupfunction, gdata, alpha, vex::Int)
     nthreads = Threads.nthreads()
     totalvecs = zeros(Int, nthreads)
+    A = gdata[1]
     n = size(A, 1)
     nbatches = floor(Int, n/nthreads)
-    if multi
-        nbatches = floor(Int, nbatches/8)
-    end
-    stime = time()
-    Threads.@threads for i=1:nthreads
-        for batch = 1:nbatches
-            if multi
-                myfunction(A, alpha, SVector(((i-1)*nbatches+(batch-1)*8+1 : (i-1)*nbatches+batch*8)...))
-            else
-                myfunction(A, alpha, (i-1)*nbatches+batch)
-            end
-            if time() - stime <= 14.4*60
-                if multi
-                    totalvecs[i] += 8
-                else
-                    totalvecs[i] += 1
-                end
-            else
-                break
-            end
-        end
-    end
-    return sum(totalvecs)
-end
 
-function benchmark_function_with_d(myfunction::Function, A, id, d, alpha)
-    nthreads = Threads.nthreads()
-    totalvecs = zeros(Int, nthreads)
-    n = size(A, 1)
-    nbatches = floor(Int, n/nthreads)
     stime = time()
     Threads.@threads for i=1:nthreads
+        # allocate info for each thread
+        prfunc, preparams, postparams = setupfunction(gdata...,vex,alpha)
         for batch = 1:nbatches
-            myfunction(A, id, d, alpha, (i-1)*nbatches+batch)
-            if time() - stime <= 14.4*60
+            prfunc(preparams..., (i-1)*nbatches+batch, postparams...)
+            if time() - stime <= maxtime
                 totalvecs[i] += 1
             else
                 break
@@ -188,44 +219,29 @@ function benchmark_function_with_d(myfunction::Function, A, id, d, alpha)
     return sum(totalvecs)
 end
 
-function threaded_benchmark(graphfile::AbstractString)
-    A,At,Pt,d,id = load_data(graphfile)
-    benchmarks = Dict{String,Any}()
+function benchmark_method_multi(maxtime, setupfunction, gdata, alpha, vex)
+    nthreads = Threads.nthreads()
+    totalvecs = zeros(Int, nthreads)
+    A = gdata[1]
+    n = size(A, 1)
+    k = length(vex)
+    VType = typeof(vex)
+    nbatches = floor(Int, n/nthreads)
+    nbatches = floor(Int, nbatches/k)
 
-    println("Threaded Benchmarking Starts....")
-
-    println("Benchmarking simple_pagerank for power_method")
-    benchmarks["power_simple"] = benchmark_function_simple(ManyPagerank.simple_pagerank, false, Pt', 0.85)
-
-    println("Benchmarking fast_pagerank_power for power_method")
-    benchmarks["power_fast"] = benchmark_function_simple(ManyPagerank.fast_pagerank_power, false, A, 0.85)
-
-    println("Benchmarking multi_pagerank for power_method")
-    benchmarks["power_multi"] = benchmark_function_simple(ManyPagerank.multi_pagerank, true, Pt', 0.85)
-
-    println("Benchmarking FastGaussSeidel")
-    benchmarks["gs_fast"] = benchmark_function_with_d(ManyPagerank.FastGaussSeidel, A, id, d, 0.85)
-
-    println("Benchmarking FastGaussSeidelFromZero")
-    benchmarks["gs_fast_zero"] = benchmark_function_with_d(ManyPagerank.FastGaussSeidelFromZero, A, id, d, 0.85)
-
-    println("Benchmarking GaussSeidelMultiPR")
-    benchmarks["gs_multi"] = benchmark_function_simple(ManyPagerank.GaussSeidelMultiPR, true, Pt, 0.85)
-
-    println("Benchmarking fast_gauss")
-    benchmarks["gs_multi_zero"] = benchmark_function_simple(ManyPagerank.multi_gauss_seidel_from_zero, true, A, 0.85)
-
-    println("Benchmarking simple_push_method")
-    benchmarks["push_simple"] = benchmark_function_simple(ManyPagerank.simple_push_method, false, At, 0.85)
-
-    println("Benchmarking multi_push_method")
-    benchmarks["push_multi"] = benchmark_function_simple(ManyPagerank.multi_push_method, true, At, 0.85)
-
-    println("Benchmarking cyclic_push_method")
-    benchmarks["push_cyclic"] = benchmark_function_simple(ManyPagerank.cyclic_push_method, false, At, 0.85)
-
-    println("Benchmarking cyclic_multi_push_method")
-    benchmarks["push_cyclic_multi"] = benchmark_function_simple(ManyPagerank.cyclic_multi_push_method, true, At, 0.85)
-
-    return benchmarks
+    stime = time()
+    Threads.@threads for i=1:nthreads
+        # allocate info for each thread
+        prfunc, preparams, postparams = setupfunction(gdata...,vex,alpha)
+        for batch = 1:nbatches
+            vcur = VType((i-1)*nbatches+(batch-1)*k+1 : (i-1)*nbatches+batch*k))
+            prfunc(preparams..., vcur, postparams...)
+            if time() - stime <= maxtime
+                totalvecs[i] += k
+            else
+                break
+            end
+        end
+    end
+    return sum(totalvecs)
 end
