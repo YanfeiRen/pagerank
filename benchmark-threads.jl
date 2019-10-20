@@ -10,9 +10,9 @@ function parse_commandline()
             help = "the total time in minutes"
             arg_type = Float64
             default = 14.4
-        "--nowarmup"
-            help = "an option without argument, i.e. a flag"
-            action = :store_false
+        "--skipwarmup"
+            help = "don't precompile the methods"
+            action = :store_true
         "graphfile"
             help = "a positional argument"
             required = true
@@ -86,7 +86,7 @@ function main()
         println("  $arg  =>  $val")
     end
 
-    if parsed_args["warmup"]
+    if parsed_args["skipwarmup"] == false
         println("Warming up methods ... ")
         @time warmup_methods()
     end
