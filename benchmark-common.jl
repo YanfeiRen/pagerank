@@ -88,6 +88,7 @@ function warmup_methods()
 end
 
 ##
+using DataStructures
 function tol_and_maxiter(n::Int, alpha)
   tol = min((1.0-alpha)/n, 1.0e-6)
   maxiter = 2*ceil(Int, log(tol)/log(alpha))
@@ -163,6 +164,7 @@ setup_call_cyclic_multi_push_method(A,At,Pt,d,id,v,alpha) =
     At, id, alpha),
     tol_and_maxiter(size(A,1),alpha))
 
+##
 #= single methods
 
 setup_call_simple_power
