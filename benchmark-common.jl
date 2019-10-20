@@ -248,7 +248,7 @@ function benchmark_method_multi(maxtime, setupfunction, gdata, alpha, vex)
     return sum(totalvecs)
 end
 
-
+#=
 function benchmark_method_distributed_single(maxtime, setupfunction, gdata, alpha, vex)
     nthreads = Threads.nthreads()
     A = gdata[1]
@@ -281,3 +281,4 @@ end
     end
     return sum(totalvecs)
 end
+=#
