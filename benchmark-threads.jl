@@ -66,7 +66,7 @@ function threaded_benchmark(graphfile::AbstractString, maxtime::Float64=14.4*60)
 
 
     println("Benchmarking gs_multi_zero 8")
-    benchmarks["gs_multi_zero_89"] = benchmark_method_multi(maxtime, setup_call_gs_multi_from_zero, gdata, alpha, vex8)
+    benchmarks["gs_multi_zero_8"] = benchmark_method_multi(maxtime, setup_call_gs_multi_from_zero, gdata, alpha, vex8)
     println(benchmarks["gs_multi_zero_8"])
 
     println("Benchmarking gs_multi_zero 16")
