@@ -42,6 +42,13 @@ function warmup_methods()
     end
     @time ManyPagerank.multi_pagerank(Pt', 0.85, SVector((1 : 8)...))
 
+    println("Run fast_multi_pagerank for power_method")
+    for k=1:kmax
+        x = ManyPagerank.fast_multi_pagerank_power(A, 0.85, SVector((1 : k)...))
+    end
+    @time ManyPagerank.fast_multi_pagerank_power(A, 0.85, SVector((1 : 8)...))
+
+
     d = vec(sum(A,dims=2))
     id = 1.0 ./d
 
@@ -114,6 +121,12 @@ setup_call_simple_power_multi(A,At,Pt,d,id,v,alpha) =
      Vector{SVector{length(v),Float64}}(undef, size(A,1)),
     Pt', alpha), tol_and_maxiter(size(A,1),alpha))
 
+setup_call_fast_power_multi(A,At,Pt,d,id,v,alpha) =
+  (ManyPagerank.fast_multi_pagerank_power!,
+    (Vector{SVector{length(v),Float64}}(undef, size(A,1)),
+     Vector{SVector{length(v),Float64}}(undef, size(A,1)),
+    A, id, alpha), tol_and_maxiter(size(A,1),alpha))
+
 setup_call_simple_push_method(A,At,Pt,d,id,v,alpha) =
     (ManyPagerank.simple_push_method!,
       (Vector{Float64}(undef, size(A,1)),
@@ -179,6 +192,7 @@ setup_call_cyclic_push_method
 #= multi methods
 
 setup_call_simple_power_multi
+setup_call_fast_power_multi
 setup_call_gs_multi
 setup_call_gs_multi_from_zero
 setup_call_multi_push_method
