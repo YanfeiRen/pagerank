@@ -4,6 +4,7 @@ using MatrixNetworks
 using StaticArrays
 using BenchmarkTools
 using SparseArrays
+using SharedArrays
 
 function load_data(graphfile)
     A,Pt = ManyPagerank.load_data(graphfile)
@@ -260,6 +261,36 @@ function benchmark_method_multi(maxtime, setupfunction, gdata, alpha, vex)
         end
     end
     return sum(totalvecs)
+end
+
+function run_batch_distributed(totalvecs, nprocs, maxtime, setupfunction, gdata, alpha, vex, i)
+    prfunc, preparams, postparams = setupfunction(gdata...,vex,alpha)
+    A = gdata[1]
+    n = size(A, 1)
+    k = length(vex)
+    VType = typeof(vex)
+    nbatches = floor(Int, n/nprocs)
+    nbatches = floor(Int, nbatches/k)
+    stime = time()
+    tvecs = 0
+    for batch = 1:nbatches
+        vcur = VType((i-1)*nbatches+(batch-1)*k+1 : (i-1)*nbatches+batch*k)
+        prfunc(preparams..., vcur, postparams...)
+        if time() - stime <= maxtime
+            totalvecs[i] += k
+            tvecs += k
+        else
+            break
+        end
+    end
+    return tvecs
+end
+
+function benchmark_method_distributed(nprocs, maxtime, setupfunction, gdata, alpha, vex)
+    totalvecs = SharedArray{Int64}(nprocs) ## todo: verify the initial values are 0
+    tvecs = pmap(i->run_batch_multi(totalvecs, nprocs, maxtime, setupfunction, gdata, alpha, vex, i), 1:nprocs)
+    @assert sum(tvecs) == sum(totalvecs)
+    return totalvecs
 end
 
 #=
