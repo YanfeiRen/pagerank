@@ -274,8 +274,14 @@ function run_batch_distributed(totalvecs, nprocs, maxtime, setupfunction, gdata,
     stime = time()
     tvecs = 0
     for batch = 1:nbatches
-        vcur = VType((i-1)*nbatches+(batch-1)*k+1 : (i-1)*nbatches+batch*k)
-        prfunc(preparams..., vcur, postparams...)
+        if VType==Int
+            vcur = VType((i-1)*nbatches+(batch-1)*k+1)
+            prfunc(preparams..., vcur, postparams...)
+        else
+            vcur = VType((i-1)*nbatches+(batch-1)*k+1 : (i-1)*nbatches+batch*k)
+            prfunc(preparams..., vcur, postparams...)
+        end
+
         if time() - stime <= maxtime
             totalvecs[i] += k
             tvecs += k
@@ -290,7 +296,7 @@ function benchmark_method_distributed(nprocs, maxtime, setupfunction, gdata, alp
     totalvecs = SharedArray{Int64}(nprocs) ## todo: verify the initial values are 0
     tvecs = pmap(i->run_batch_distributed(totalvecs, nprocs, maxtime, setupfunction, gdata, alpha, vex, i), 1:nprocs)
     @assert sum(tvecs) == sum(totalvecs)
-    return totalvecs
+    return sum(totalvecs)
 end
 
 #=
