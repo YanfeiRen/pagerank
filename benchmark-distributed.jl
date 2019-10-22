@@ -1,15 +1,4 @@
 using Distributed
-
-n = 16     ## the num of procs we want to use
-addprocs(n)
-
-nprocs = nprocs()
-
-@everywhere include("benchmark-common.jl")
-@everywhere assert(Threads.nthreads() == 1) # make sure we are single threaded
-
-@everywhere gdata = load_data(graphfile)
-
 using ArgParse
 
 function parse_commandline()
@@ -38,9 +27,8 @@ function parse_commandline()
     return parse_args(s)
 end
 
-
-
-function distributed_benchmark(maxtime::Float64=14.4*60, subset::Bool=false)
+function distributed_benchmark(graphfile::AbstractString, nprocs, maxtime::Float64=14.4*60, subset::Bool=false)
+    gdata = load_data(graphfile)
     benchmarks = Dict{String,Int}()
     vex8 = SVector((1:8)...)
     vex16 = SVector((1:16)...)
@@ -133,27 +121,36 @@ end
 
 
 function main()
+
+    numprocs = nprocs()
+    if parsed_args["skipwarmup"] == false
+        println("Warming up methods ... ")
+        @everywhere warmup_methods()
+    end
+
+    println("Running methods on $(parsed_args["graphfile"]) ")
+    display(distributed_benchmark(parsed_args["graphfile"],numprocs,
+        60*parsed_args["maxtime"],
+        parsed_args["runsubset"]))
+    println("")
+end
+
+if !isinteractive()
+
     parsed_args = parse_commandline()
     println("Parsed args:")
     for (arg,val) in parsed_args
         println("  $arg  =>  $val")
     end
 
-    if parsed_args["skipwarmup"] == false
-        println("Warming up methods ... ")
-        @time warmup_methods()
-    end
+    addprocs(parsed_args["numprocs"])
 
-    println("Running methods on $(parsed_args["graphfile"]) ")
-    display(distributed_benchmark(parsed_args["numprocs"],
-        60*parsed_args["maxtime"],
-        parsed_args["runsubset"]))
-    println("")
+    @everywhere using Pkg;
+    @everywhere Pkg.activate(".")
+    @everywhere include("src/ManyPagerank.jl")
+    @everywhere include("benchmark-common.jl")
+    @everywhere @assert(Threads.nthreads() == 1) # make sure we are single threaded
 
-
-end
-
-if !isinteractive()
     main()
 end
 
