@@ -20,7 +20,8 @@ function multi_gauss_seidel_from_zero!(x::Vector{T},
 	rowid = rowvals(A)
 	nzeros = nonzeros(A)
   lastiter = -1
-	@inbounds for iter = 1: maxiter
+	@inbounds for iter = 1:maxiter
+		# delta tracks the sum in the current iterate, which will give the total sum
 		delta = z
 	  for i = 1:n
 		  tmpsum = z

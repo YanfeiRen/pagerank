@@ -139,8 +139,6 @@ function main()
         60*parsed_args["maxtime"],
         parsed_args["runsubset"]))
     println("")
-
-
 end
 
 if !isinteractive()
