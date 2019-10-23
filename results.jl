@@ -88,3 +88,71 @@ result = Dict(["fast_power_multi_8" => 1440
 params = ["threaded", "threads-32", "graph-livejournal", "order-original", "server-nilpotent"]
 push!(results, (result, params))
 
+## "threaded", "threads-64", "graph-orkut", "order-original", "server-nilpotent"
+result = Dict(["fast_power_multi_8" => 512
+  "gs_multi_zero_8" => 1744
+  "push_cyclic_multi_16" => 272
+  "power_fast" => 128
+  "fast_power_multi_16" => 816
+  "push_cyclic_multi_8" => 696
+  "power_simple" => 186
+  "push_simple" => 127
+  "power_multi_16" => 816
+  "gs_fast" => 294
+  "push_multi_8" => 512
+  "power_multi_8" => 904
+  "gs_multi_8" => 1376
+  "push_cyclic" => 210
+  "gs_fast_zero" => 366
+  "gs_multi_16" => 1120
+  "push_multi_16" => 0
+  "gs_multi_zero_16" => 1680])
+params = ["threaded", "threads-64", "graph-orkut", "order-original", "server-nilpotent"]
+push!(results, (result, params))
+
+## "threaded", "threads-64", "graph-orkut", "order-50", "server-nilpotent" 
+result = Dict(["fast_power_multi_8" => 928
+  "gs_multi_zero_8" => 1920
+  "push_cyclic_multi_16" => 1008
+  "power_fast" => 182
+  "fast_power_multi_16" => 992
+  "push_cyclic_multi_8" => 1104
+  "power_simple" => 256
+  "push_simple" => 127
+  "power_multi_16" => 960
+  "gs_fast" => 421
+  "push_multi_8" => 424
+  "power_multi_8" => 896
+  "gs_multi_8" => 1440
+  "push_cyclic" => 391
+  "gs_fast_zero" => 520
+  "gs_multi_16" => 1600
+  "push_multi_16" => 0
+  "gs_multi_zero_16" => 1952])
+params = ["threaded", "threads-64", "graph-orkut", "order-50", "server-nilpotent"]
+push!(results, (result, params))
+
+## "threaded", "threads-64", "graph-orkut", "order-100", "server-nilpotent" 
+result = Dict(["fast_power_multi_8" => 968
+  "gs_multi_zero_8" => 2120
+  "push_cyclic_multi_16" => 976
+  "power_fast" => 195
+  "fast_power_multi_16" => 864
+  "push_cyclic_multi_8" => 1176
+  "power_simple" => 252
+  "push_simple" => 128
+  "power_multi_16" => 992
+  "gs_fast" => 441
+  "push_multi_8" => 512
+  "power_multi_8" => 944
+  "gs_multi_8" => 1448
+  "push_cyclic" => 415
+  "gs_fast_zero" => 561
+  "gs_multi_16" => 1680
+  "push_multi_16" => 0
+  "gs_multi_zero_16" => 1936
+])
+params = ["threaded", "threads-64", "graph-orkut", "order-100", "server-nilpotent"]
+push!(results, (result, params))
+
+
