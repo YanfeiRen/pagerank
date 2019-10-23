@@ -1,0 +1,68 @@
+Activating environment at `/u/subspace_s3/dgleich/allpagerank/pagerank/Project.toml`
+Parsed args:
+  runsubset8  =>  false
+  skipwarmup  =>  false
+  graphfile  =>  /p/mnt/scratch/dgleich/allpagerank/data/soc-LiveJournal1-scc-50.smat
+  maxtime  =>  5.0
+  runsubset_gs8  =>  true
+  numprocs  =>  1
+Activating environment at `/u/subspace_s3/dgleich/allpagerank/pagerank/Project.toml`
+      From worker 2:	Activating environment at `/u/subspace_s3/dgleich/allpagerank/pagerank/Project.toml`
+Warming up methods ... 
+Run simple_pagerank for power_method
+  0.001221 seconds (5 allocations: 7.469 KiB)
+Run fast_pagerank_power for power_method
+  0.001314 seconds (15 allocations: 18.781 KiB)
+Run multi_pagerank for power_method
+        From worker 2:	Run simple_pagerank for power_method0
+.      From worker 2:	  0.001972 seconds (5 allocations: 7.469 KiB)0
+0      From worker 2:	Run fast_pagerank_power for power_method153
+0      From worker 2:	  0.002035 seconds (15 allocations: 18.781 KiB) seconds
+ (      From worker 2:	Run multi_pagerank for power_method34
+      From worker 2:	  0.001499 seconds (34 allocations: 60.516 KiB) allocation
+s      From worker 2:	Run fast_multi_pagerank for power_method: 
+60.516 KiB)
+Run fast_multi_pagerank for power_method
+        From worker 2:	  0.001844 seconds (221 allocations: 77.031 KiB)0
+.      From worker 2:	Run FastGaussSeidel0
+0      From worker 2:	  0.002963 seconds (2 allocations: 3.719 KiB)1858
+ seconds      From worker 2:	Run FastGaussSeidelFromZero (
+221      From worker 2:	  0.002877 seconds (2 allocations: 3.719 KiB)
+ allocation      From worker 2:	Run GaussSeidelMultiPRs
+: 77.031 KiB)
+Run FastGaussSeidel
+  0.002973 seconds (2 allocations: 3.719 KiB)
+Run FastGaussSeidelFromZero
+  0.002841 seconds (2 allocations: 3.719 KiB)
+Run GaussSeidelMultiPR
+        From worker 2:	  0.005042 seconds (78 allocations: 34.500 KiB)0
+.      From worker 2:	Run fast_gauss0
+05056 seconds (78 allocations: 34.500 KiB)
+Run fast_gauss
+        From worker 2:	  0.003693 seconds (99 allocations: 53.469 KiB)0
+.      From worker 2:	Run simple_push_method0
+0      From worker 2:	  0.004621 seconds (4 allocations: 11.109 KiB)3692
+ seconds      From worker 2:	Run multi_push_method (
+99 allocations: 53.469 KiB)
+Run simple_push_method
+  0.004599 seconds (4 allocations: 11.109 KiB)
+Run multi_push_method
+        From worker 2:	  0.009943 seconds (80 allocations: 66.172 KiB)0
+.      From worker 2:	Run cyclic_push_method0
+0      From worker 2:	  0.002094 seconds (7 allocations: 14.859 KiB)9958
+ seconds      From worker 2:	Run cyclic_multi_push_method (
+80 allocations: 66.172 KiB)
+Run cyclic_push_method
+  0.002061 seconds (7 allocations: 14.859 KiB)
+Run cyclic_multi_push_method
+        From worker 2:	  0.004270 seconds (83 allocations: 69.922 KiB)0
+.004256 seconds (83 allocations: 69.922 KiB)
+Running methods on /p/mnt/scratch/dgleich/allpagerank/data/soc-LiveJournal1-scc-50.smat 
+Loaded /p/mnt/scratch/dgleich/allpagerank/data/soc-LiveJournal1-scc-50.smat
+  3828682 vertices
+  65825429 non-zeros
+
+Benchmarking gs_multi_zero 8
+128
+Dict{String,Int64} with 1 entry:
+  "gs_multi_zero_8" => 128

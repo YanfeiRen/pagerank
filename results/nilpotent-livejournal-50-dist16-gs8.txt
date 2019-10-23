@@ -1,0 +1,443 @@
+Activating environment at `/u/subspace_s3/dgleich/allpagerank/pagerank/Project.toml`
+Parsed args:
+  runsubset8  =>  false
+  skipwarmup  =>  false
+  graphfile  =>  /p/mnt/scratch/dgleich/allpagerank/data/soc-LiveJournal1-scc-50.smat
+  maxtime  =>  5.0
+  runsubset_gs8  =>  true
+  numprocs  =>  16
+Activating environment at `/u/subspace_s3/dgleich/allpagerank/pagerank/Project.toml`
+      From worker 9:	Activating environment at `/u/subspace_s3/dgleich/allpagerank/pagerank/Project.toml`
+      From worker 2:	Activating environment at `/u/subspace_s3/dgleich/allpagerank/pagerank/Project.toml`
+      From worker 8:	Activating environment at `/u/subspace_s3/dgleich/allpagerank/pagerank/Project.toml`
+      From worker 5:	Activating environment at `/u/subspace_s3/dgleich/allpagerank/pagerank/Project.toml`
+      From worker 4:	Activating environment at `/u/subspace_s3/dgleich/allpagerank/pagerank/Project.toml`
+      From worker 11:	Activating environment at `/u/subspace_s3/dgleich/allpagerank/pagerank/Project.toml`
+      From worker 13:	Activating environment at `/u/subspace_s3/dgleich/allpagerank/pagerank/Project.toml`
+      From worker 16:	Activating environment at `/u/subspace_s3/dgleich/allpagerank/pagerank/Project.toml`
+      From worker 7:	Activating environment at `/u/subspace_s3/dgleich/allpagerank/pagerank/Project.toml`
+      From worker 3:	Activating environment at `/u/subspace_s3/dgleich/allpagerank/pagerank/Project.toml`
+      From worker 17:	Activating environment at `/u/subspace_s3/dgleich/allpagerank/pagerank/Project.toml`
+      From worker 15:	Activating environment at `/u/subspace_s3/dgleich/allpagerank/pagerank/Project.toml`
+      From worker 12:	Activating environment at `/u/subspace_s3/dgleich/allpagerank/pagerank/Project.toml`
+      From worker 10:	Activating environment at `/u/subspace_s3/dgleich/allpagerank/pagerank/Project.toml`
+      From worker 14:	Activating environment at `/u/subspace_s3/dgleich/allpagerank/pagerank/Project.toml`
+      From worker 6:	Activating environment at `/u/subspace_s3/dgleich/allpagerank/pagerank/Project.toml`
+Warming up methods ... 
+Run simple_pagerank for power_method
+  0.001325 seconds (5 allocations: 7.469 KiB)
+Run fast_pagerank_power for power_method
+  0.001420 seconds (15 allocations: 18.781 KiB)
+Run multi_pagerank for power_method
+        From worker 17:	Run simple_pagerank for power_method0
+.      From worker 17:	  0.001291 seconds (5 allocations: 7.469 KiB)0
+0      From worker 17:	Run fast_pagerank_power for power_method1898
+ seconds      From worker 17:	  0.001369 seconds (15 allocations: 18.781 KiB) (
+34      From worker 17:	Run multi_pagerank for power_method
+ allocation      From worker 17:	  0.001916 seconds (34 allocations: 60.516 KiB)s
+:       From worker 17:	Run fast_multi_pagerank for power_method60.516 KiB
+)
+      From worker 6:	Run simple_pagerank for power_method
+      From worker 6:	  0.001319 seconds (5 allocations: 7.469 KiB)
+      From worker 6:	Run fast_pagerank_power for power_method
+      From worker 6:	  0.001418 seconds (15 allocations: 18.781 KiB)
+      From worker 6:	Run multi_pagerank for power_method
+      From worker 13:	Run simple_pagerank for power_method
+      From worker 13:	  0.001280 seconds (5 allocations: 7.469 KiB)
+      From worker 13:	Run fast_pagerank_power for power_method
+      From worker 13:	  0.001375 seconds (15 allocations: 18.781 KiB)
+      From worker 13:	Run multi_pagerank for power_method
+      From worker 13:	  0.001900 seconds (34 allocations: 60.516 KiB)
+      From worker 13:	Run fast_multi_pagerank for power_method
+      From worker 5:	Run simple_pagerank for power_method
+      From worker 5:	  0.001403 seconds (5 allocations: 7.469 KiB)
+      From worker 5:	Run fast_pagerank_power for power_method
+      From worker 5:	  0.001459 seconds (15 allocations: 18.781 KiB)
+      From worker 5:	Run multi_pagerank for power_method
+      From worker 5:	  0.001961 seconds (34 allocations: 60.516 KiB)
+      From worker 5:	Run fast_multi_pagerank for power_method
+      From worker 16:	Run simple_pagerank for power_method
+      From worker 16:	  0.001320 seconds (5 allocations: 7.469 KiB)
+      From worker 16:	Run fast_pagerank_power for power_method
+      From worker 16:	  0.001407 seconds (15 allocations: 18.781 KiB)
+      From worker 16:	Run multi_pagerank for power_method
+      From worker 16:	  0.001895 seconds (34 allocations: 60.516 KiB)
+      From worker 16:	Run fast_multi_pagerank for power_method
+      From worker 12:	Run simple_pagerank for power_method
+      From worker 12:	  0.001361 seconds (5 allocations: 7.469 KiB)
+      From worker 12:	Run fast_pagerank_power for power_method
+      From worker 12:	  0.001461 seconds (15 allocations: 18.781 KiB)
+      From worker 12:	Run multi_pagerank for power_method
+      From worker 10:	Run simple_pagerank for power_method
+      From worker 10:	  0.001321 seconds (5 allocations: 7.469 KiB)
+      From worker 10:	Run fast_pagerank_power for power_method
+      From worker 10:	  0.001417 seconds (15 allocations: 18.781 KiB)
+      From worker 10:	Run multi_pagerank for power_method
+      From worker 11:	Run simple_pagerank for power_method
+      From worker 11:	  0.001324 seconds (5 allocations: 7.469 KiB)
+      From worker 11:	Run fast_pagerank_power for power_method
+      From worker 11:	  0.001420 seconds (15 allocations: 18.781 KiB)
+      From worker 11:	Run multi_pagerank for power_method
+      From worker 11:	  0.001962 seconds (34 allocations: 60.516 KiB)
+      From worker 11:	Run fast_multi_pagerank for power_method
+      From worker 3:	Run simple_pagerank for power_method
+      From worker 3:	  0.001315 seconds (5 allocations: 7.469 KiB)
+      From worker 3:	Run fast_pagerank_power for power_method
+      From worker 3:	  0.001407 seconds (15 allocations: 18.781 KiB)
+      From worker 3:	Run multi_pagerank for power_method
+      From worker 3:	  0.001948 seconds (34 allocations: 60.516 KiB)
+      From worker 3:	Run fast_multi_pagerank for power_method
+      From worker 9:	Run simple_pagerank for power_method
+      From worker 9:	  0.001345 seconds (5 allocations: 7.469 KiB)
+      From worker 9:	Run fast_pagerank_power for power_method
+      From worker 9:	  0.001461 seconds (15 allocations: 18.781 KiB)
+      From worker 9:	Run multi_pagerank for power_method
+      From worker 15:	Run simple_pagerank for power_method
+      From worker 15:	  0.001304 seconds (5 allocations: 7.469 KiB)
+      From worker 15:	Run fast_pagerank_power for power_method
+      From worker 15:	  0.001414 seconds (15 allocations: 18.781 KiB)
+      From worker 15:	Run multi_pagerank for power_method
+      From worker 15:	  0.001694 seconds (34 allocations: 60.516 KiB)
+      From worker 15:	Run fast_multi_pagerank for power_method
+      From worker 4:	Run simple_pagerank for power_method
+      From worker 4:	  0.001301 seconds (5 allocations: 7.469 KiB)
+      From worker 4:	Run fast_pagerank_power for power_method
+      From worker 4:	  0.001411 seconds (15 allocations: 18.781 KiB)
+      From worker 4:	Run multi_pagerank for power_method
+      From worker 7:	Run simple_pagerank for power_method
+      From worker 7:	  0.001294 seconds (5 allocations: 7.469 KiB)
+      From worker 7:	Run fast_pagerank_power for power_method
+      From worker 7:	  0.001397 seconds (15 allocations: 18.781 KiB)
+      From worker 7:	Run multi_pagerank for power_method
+      From worker 7:	  0.001922 seconds (34 allocations: 60.516 KiB)
+      From worker 7:	Run fast_multi_pagerank for power_method
+      From worker 8:	Run simple_pagerank for power_method
+      From worker 8:	  0.001311 seconds (5 allocations: 7.469 KiB)
+      From worker 8:	Run fast_pagerank_power for power_method
+      From worker 8:	  0.001412 seconds (15 allocations: 18.781 KiB)
+      From worker 8:	Run multi_pagerank for power_method
+      From worker 2:	Run simple_pagerank for power_method
+      From worker 2:	  0.001310 seconds (5 allocations: 7.469 KiB)
+      From worker 2:	Run fast_pagerank_power for power_method
+      From worker 2:	  0.001408 seconds (15 allocations: 18.781 KiB)
+      From worker 2:	Run multi_pagerank for power_method
+      From worker 2:	  0.001893 seconds (34 allocations: 60.516 KiB)
+      From worker 2:	Run fast_multi_pagerank for power_method
+      From worker 14:	Run simple_pagerank for power_method
+      From worker 14:	  0.001375 seconds (5 allocations: 7.469 KiB)
+      From worker 14:	Run fast_pagerank_power for power_method
+      From worker 14:	  0.001468 seconds (15 allocations: 18.781 KiB)
+      From worker 14:	Run multi_pagerank for power_method
+Run fast_multi_pagerank for power_method
+        From worker 9:	  0.001893 seconds (34 allocations: 60.516 KiB)0
+.      From worker 9:	Run fast_multi_pagerank for power_method0
+0      From worker 9:	  0.002476 seconds (221 allocations: 77.031 KiB)2441
+ seconds      From worker 9:	Run FastGaussSeidel (
+221      From worker 9:	  0.003354 seconds (2 allocations: 3.719 KiB)
+ allocation      From worker 9:	Run FastGaussSeidelFromZeros
+:       From worker 9:	  0.003160 seconds (2 allocations: 3.719 KiB)77.031 KiB
+)      From worker 9:	Run GaussSeidelMultiPR
+
+      From worker 4:	  0.001906 seconds (34 allocations: 60.516 KiB)
+      From worker 4:	Run fast_multi_pagerank for power_method
+      From worker 14:	  0.002058 seconds (34 allocations: 60.516 KiB)
+      From worker 14:	Run fast_multi_pagerank for power_method
+      From worker 12:	  0.002029 seconds (34 allocations: 60.516 KiB)
+      From worker 12:	Run fast_multi_pagerank for power_method
+      From worker 10:	  0.002018 seconds (34 allocations: 60.516 KiB)
+      From worker 10:	Run fast_multi_pagerank for power_method
+      From worker 6:	  0.001920 seconds (34 allocations: 60.516 KiB)
+      From worker 6:	Run fast_multi_pagerank for power_method
+      From worker 8:	  0.001928 seconds (34 allocations: 60.516 KiB)
+      From worker 8:	Run fast_multi_pagerank for power_method
+      From worker 7:	  0.002440 seconds (221 allocations: 77.031 KiB)
+      From worker 7:	Run FastGaussSeidel
+      From worker 7:	  0.003611 seconds (2 allocations: 3.719 KiB)
+      From worker 7:	Run FastGaussSeidelFromZero
+      From worker 7:	  0.003447 seconds (2 allocations: 3.719 KiB)
+      From worker 7:	Run GaussSeidelMultiPR
+      From worker 15:	  0.001989 seconds (221 allocations: 77.031 KiB)
+      From worker 15:	Run FastGaussSeidel
+      From worker 15:	  0.003263 seconds (2 allocations: 3.719 KiB)
+      From worker 15:	Run FastGaussSeidelFromZero
+      From worker 15:	  0.003107 seconds (2 allocations: 3.719 KiB)
+      From worker 15:	Run GaussSeidelMultiPR
+      From worker 5:	  0.002421 seconds (221 allocations: 77.031 KiB)
+      From worker 5:	Run FastGaussSeidel
+      From worker 5:	  0.003638 seconds (2 allocations: 3.719 KiB)
+      From worker 5:	Run FastGaussSeidelFromZero
+      From worker 5:	  0.003467 seconds (2 allocations: 3.719 KiB)
+      From worker 5:	Run GaussSeidelMultiPR
+      From worker 2:	  0.002319 seconds (221 allocations: 77.031 KiB)
+      From worker 2:	Run FastGaussSeidel
+      From worker 2:	  0.003347 seconds (2 allocations: 3.719 KiB)
+      From worker 2:	Run FastGaussSeidelFromZero
+      From worker 2:	  0.003158 seconds (2 allocations: 3.719 KiB)
+      From worker 2:	Run GaussSeidelMultiPR
+      From worker 3:	  0.002276 seconds (221 allocations: 77.031 KiB)
+      From worker 3:	Run FastGaussSeidel
+      From worker 3:	  0.003316 seconds (2 allocations: 3.719 KiB)
+      From worker 3:	Run FastGaussSeidelFromZero
+      From worker 3:	  0.003165 seconds (2 allocations: 3.719 KiB)
+      From worker 3:	Run GaussSeidelMultiPR
+      From worker 16:	  0.002267 seconds (221 allocations: 77.031 KiB)
+      From worker 16:	Run FastGaussSeidel
+      From worker 16:	  0.003312 seconds (2 allocations: 3.719 KiB)
+      From worker 16:	Run FastGaussSeidelFromZero
+      From worker 16:	  0.003191 seconds (2 allocations: 3.719 KiB)
+      From worker 16:	Run GaussSeidelMultiPR
+      From worker 13:	  0.002321 seconds (221 allocations: 77.031 KiB)
+      From worker 13:	Run FastGaussSeidel
+      From worker 13:	  0.003455 seconds (2 allocations: 3.719 KiB)
+      From worker 13:	Run FastGaussSeidelFromZero
+      From worker 13:	  0.003320 seconds (2 allocations: 3.719 KiB)
+      From worker 13:	Run GaussSeidelMultiPR
+      From worker 17:	  0.002367 seconds (221 allocations: 77.031 KiB)
+      From worker 17:	Run FastGaussSeidel
+      From worker 17:	  0.003437 seconds (2 allocations: 3.719 KiB)
+      From worker 17:	Run FastGaussSeidelFromZero
+      From worker 17:	  0.003283 seconds (2 allocations: 3.719 KiB)
+      From worker 17:	Run GaussSeidelMultiPR
+      From worker 11:	  0.002509 seconds (221 allocations: 77.031 KiB)
+      From worker 11:	Run FastGaussSeidel
+      From worker 11:	  0.003603 seconds (2 allocations: 3.719 KiB)
+      From worker 11:	Run FastGaussSeidelFromZero
+      From worker 11:	  0.003391 seconds (2 allocations: 3.719 KiB)
+      From worker 11:	Run GaussSeidelMultiPR
+Run FastGaussSeidel
+  0.003631 seconds (2 allocations: 3.719 KiB)
+Run FastGaussSeidelFromZero
+  0.003460 seconds (2 allocations: 3.719 KiB)
+Run GaussSeidelMultiPR
+        From worker 4:	  0.002485 seconds (221 allocations: 77.031 KiB)0
+.      From worker 4:	Run FastGaussSeidel0
+0      From worker 4:	  0.003462 seconds (2 allocations: 3.719 KiB)6815
+ seconds      From worker 4:	Run FastGaussSeidelFromZero (
+78      From worker 4:	  0.003290 seconds (2 allocations: 3.719 KiB)
+ allocation      From worker 4:	Run GaussSeidelMultiPRs
+: 34.500 KiB      From worker 12:	  0.002449 seconds (221 allocations: 77.031 KiB))
+
+      From worker 12:	Run FastGaussSeidel
+      From worker 12:	  0.003558 seconds (2 allocations: 3.719 KiB)
+      From worker 12:	Run FastGaussSeidelFromZero
+      From worker 12:	  0.003389 seconds (2 allocations: 3.719 KiB)
+      From worker 12:	Run GaussSeidelMultiPR
+      From worker 12:	  0.005722 seconds (78 allocations: 34.500 KiB)
+      From worker 12:	Run fast_gauss
+Run fast_gauss
+       From worker 14:	  0.002514 seconds (221 allocations: 77.031 KiB) 
+0      From worker 14:	Run FastGaussSeidel.
+0      From worker 14:	  0.003627 seconds (2 allocations: 3.719 KiB)0
+4966      From worker 14:	Run FastGaussSeidelFromZero seconds
+ (      From worker 14:	  0.003457 seconds (2 allocations: 3.719 KiB)99
+      From worker 14:	Run GaussSeidelMultiPR allocation
+s:       From worker 10:	  0.004274 seconds (221 allocations: 77.031 KiB)53.469 KiB
+)      From worker 10:	Run FastGaussSeidel
+
+      From worker 10:	  0.006072 seconds (2 allocations: 3.719 KiB)
+      From worker 10:	Run FastGaussSeidelFromZero
+      From worker 10:	  0.005776 seconds (2 allocations: 3.719 KiB)
+      From worker 10:	Run GaussSeidelMultiPR
+      From worker 6:	  0.002275 seconds (221 allocations: 77.031 KiB)
+      From worker 6:	Run FastGaussSeidel
+      From worker 6:	  0.003369 seconds (2 allocations: 3.719 KiB)
+      From worker 6:	Run FastGaussSeidelFromZero
+      From worker 6:	  0.003170 seconds (2 allocations: 3.719 KiB)
+      From worker 6:	Run GaussSeidelMultiPR
+      From worker 8:	  0.002367 seconds (221 allocations: 77.031 KiB)
+      From worker 8:	Run FastGaussSeidel
+      From worker 8:	  0.003329 seconds (2 allocations: 3.719 KiB)
+      From worker 8:	Run FastGaussSeidelFromZero
+      From worker 8:	  0.003189 seconds (2 allocations: 3.719 KiB)
+      From worker 8:	Run GaussSeidelMultiPR
+      From worker 15:	  0.005767 seconds (78 allocations: 34.500 KiB)
+      From worker 15:	Run fast_gauss
+      From worker 7:	  0.006804 seconds (78 allocations: 34.500 KiB)
+      From worker 7:	Run fast_gauss
+      From worker 5:	  0.006752 seconds (78 allocations: 34.500 KiB)
+      From worker 5:	Run fast_gauss
+      From worker 2:	  0.006376 seconds (78 allocations: 34.500 KiB)
+      From worker 2:	Run fast_gauss
+      From worker 3:	  0.006285 seconds (78 allocations: 34.500 KiB)
+      From worker 3:	Run fast_gauss
+      From worker 16:	  0.006241 seconds (78 allocations: 34.500 KiB)
+      From worker 16:	Run fast_gauss
+      From worker 11:	  0.005981 seconds (78 allocations: 34.500 KiB)
+      From worker 11:	Run fast_gauss
+      From worker 9:	  0.005958 seconds (78 allocations: 34.500 KiB)
+      From worker 9:	Run fast_gauss
+      From worker 13:	  0.006333 seconds (78 allocations: 34.500 KiB)
+      From worker 13:	Run fast_gauss
+      From worker 17:	  0.006730 seconds (78 allocations: 34.500 KiB)
+      From worker 17:	Run fast_gauss
+      From worker 4:	  0.006405 seconds (78 allocations: 34.500 KiB)
+      From worker 4:	Run fast_gauss
+      From worker 4:	  0.004089 seconds (99 allocations: 53.469 KiB)
+      From worker 4:	Run simple_push_method
+      From worker 4:	  0.005017 seconds (4 allocations: 11.109 KiB)
+      From worker 4:	Run multi_push_method
+      From worker 12:	  0.004392 seconds (99 allocations: 53.469 KiB)
+      From worker 12:	Run simple_push_method
+      From worker 12:	  0.005215 seconds (4 allocations: 11.109 KiB)
+      From worker 12:	Run multi_push_method
+      From worker 14:	  0.006685 seconds (78 allocations: 34.500 KiB)
+      From worker 14:	Run fast_gauss
+      From worker 14:	  0.004236 seconds (99 allocations: 53.469 KiB)
+      From worker 14:	Run simple_push_method
+      From worker 14:	  0.005225 seconds (4 allocations: 11.109 KiB)
+      From worker 14:	Run multi_push_method
+Run simple_push_method
+       From worker 10:	  0.006824 seconds (78 allocations: 34.500 KiB) 
+0      From worker 10:	Run fast_gauss.
+00      From worker 6:	  0.005635 seconds (78 allocations: 34.500 KiB)5791
+ seconds      From worker 6:	Run fast_gauss (
+4      From worker 6:	  0.004079 seconds (99 allocations: 53.469 KiB)
+ allocation      From worker 6:	Run simple_push_methods
+:       From worker 6:	  0.004918 seconds (4 allocations: 11.109 KiB)11.109 KiB
+)      From worker 6:	Run multi_push_method
+
+      From worker 8:	  0.005577 seconds (78 allocations: 34.500 KiB)
+      From worker 8:	Run fast_gauss
+      From worker 15:	  0.004080 seconds (99 allocations: 53.469 KiB)
+      From worker 15:	Run simple_push_method
+      From worker 15:	  0.004691 seconds (4 allocations: 11.109 KiB)
+      From worker 15:	Run multi_push_method
+      From worker 15:	  0.010967 seconds (80 allocations: 66.172 KiB)
+      From worker 15:	Run cyclic_push_method
+      From worker 15:	  0.002296 seconds (7 allocations: 14.859 KiB)
+      From worker 15:	Run cyclic_multi_push_method
+      From worker 7:	  0.004793 seconds (99 allocations: 53.469 KiB)
+      From worker 7:	Run simple_push_method
+      From worker 7:	  0.005446 seconds (4 allocations: 11.109 KiB)
+      From worker 7:	Run multi_push_method
+      From worker 5:	  0.004219 seconds (99 allocations: 53.469 KiB)
+      From worker 5:	Run simple_push_method
+      From worker 5:	  0.004818 seconds (4 allocations: 11.109 KiB)
+      From worker 5:	Run multi_push_method
+      From worker 2:	  0.005014 seconds (99 allocations: 53.469 KiB)
+      From worker 2:	Run simple_push_method
+      From worker 2:	  0.005406 seconds (4 allocations: 11.109 KiB)
+      From worker 2:	Run multi_push_method
+      From worker 3:	  0.004088 seconds (99 allocations: 53.469 KiB)
+      From worker 3:	Run simple_push_method
+      From worker 3:	  0.004704 seconds (4 allocations: 11.109 KiB)
+      From worker 3:	Run multi_push_method
+      From worker 16:	  0.004237 seconds (99 allocations: 53.469 KiB)
+      From worker 16:	Run simple_push_method
+      From worker 16:	  0.005203 seconds (4 allocations: 11.109 KiB)
+      From worker 16:	Run multi_push_method
+      From worker 11:	  0.004392 seconds (99 allocations: 53.469 KiB)
+      From worker 11:	Run simple_push_method
+      From worker 11:	  0.005242 seconds (4 allocations: 11.109 KiB)
+      From worker 11:	Run multi_push_method
+      From worker 9:	  0.004675 seconds (99 allocations: 53.469 KiB)
+      From worker 9:	Run simple_push_method
+      From worker 9:	  0.005231 seconds (4 allocations: 11.109 KiB)
+      From worker 9:	Run multi_push_method
+      From worker 13:	  0.004677 seconds (99 allocations: 53.469 KiB)
+      From worker 13:	Run simple_push_method
+      From worker 13:	  0.005159 seconds (4 allocations: 11.109 KiB)
+      From worker 13:	Run multi_push_method
+      From worker 17:	  0.004243 seconds (99 allocations: 53.469 KiB)
+      From worker 17:	Run simple_push_method
+      From worker 17:	  0.005226 seconds (4 allocations: 11.109 KiB)
+      From worker 17:	Run multi_push_method
+Run multi_push_method
+        From worker 8:	  0.004096 seconds (99 allocations: 53.469 KiB)0
+.      From worker 8:	Run simple_push_method0
+12871      From worker 8:	  0.005049 seconds (4 allocations: 11.109 KiB) seconds
+ (      From worker 8:	Run multi_push_method80
+ allocation      From worker 10:	  0.005019 seconds (99 allocations: 53.469 KiB)s
+:       From worker 10:	Run simple_push_method66.172 KiB
+)      From worker 10:	  0.005832 seconds (4 allocations: 11.109 KiB)
+
+      From worker 10:	Run multi_push_method
+      From worker 5:	  0.011774 seconds (80 allocations: 66.172 KiB)
+      From worker 5:	Run cyclic_push_method
+      From worker 5:	  0.002492 seconds (7 allocations: 14.859 KiB)
+      From worker 5:	Run cyclic_multi_push_method
+      From worker 5:	  0.005025 seconds (83 allocations: 69.922 KiB)
+      From worker 7:	  0.012596 seconds (80 allocations: 66.172 KiB)
+      From worker 7:	Run cyclic_push_method
+      From worker 7:	  0.003007 seconds (7 allocations: 14.859 KiB)
+      From worker 7:	Run cyclic_multi_push_method
+      From worker 3:	  0.010938 seconds (80 allocations: 66.172 KiB)
+      From worker 3:	Run cyclic_push_method
+      From worker 3:	  0.002310 seconds (7 allocations: 14.859 KiB)
+      From worker 3:	Run cyclic_multi_push_method
+      From worker 16:	  0.011001 seconds (80 allocations: 66.172 KiB)
+      From worker 16:	Run cyclic_push_method
+      From worker 16:	  0.002293 seconds (7 allocations: 14.859 KiB)
+      From worker 16:	Run cyclic_multi_push_method
+      From worker 11:	  0.011795 seconds (80 allocations: 66.172 KiB)
+      From worker 11:	Run cyclic_push_method
+      From worker 11:	  0.002486 seconds (7 allocations: 14.859 KiB)
+      From worker 11:	Run cyclic_multi_push_method
+      From worker 15:	  0.004880 seconds (83 allocations: 69.922 KiB)
+      From worker 13:	  0.010765 seconds (80 allocations: 66.172 KiB)
+      From worker 13:	Run cyclic_push_method
+      From worker 13:	  0.002178 seconds (7 allocations: 14.859 KiB)
+      From worker 13:	Run cyclic_multi_push_method
+      From worker 4:	  0.010827 seconds (80 allocations: 66.172 KiB)
+      From worker 4:	Run cyclic_push_method
+      From worker 4:	  0.002191 seconds (7 allocations: 14.859 KiB)
+      From worker 4:	Run cyclic_multi_push_method
+      From worker 2:	  0.012851 seconds (80 allocations: 66.172 KiB)
+      From worker 2:	Run cyclic_push_method
+      From worker 2:	  0.003042 seconds (7 allocations: 14.859 KiB)
+      From worker 2:	Run cyclic_multi_push_method
+      From worker 6:	  0.011547 seconds (80 allocations: 66.172 KiB)
+      From worker 6:	Run cyclic_push_method
+      From worker 6:	  0.002333 seconds (7 allocations: 14.859 KiB)
+      From worker 6:	Run cyclic_multi_push_method
+      From worker 12:	  0.011775 seconds (80 allocations: 66.172 KiB)
+      From worker 12:	Run cyclic_push_method
+      From worker 12:	  0.002507 seconds (7 allocations: 14.859 KiB)
+      From worker 12:	Run cyclic_multi_push_method
+      From worker 17:	  0.011773 seconds (80 allocations: 66.172 KiB)
+      From worker 17:	Run cyclic_push_method
+      From worker 17:	  0.002520 seconds (7 allocations: 14.859 KiB)
+      From worker 17:	Run cyclic_multi_push_method
+      From worker 14:	  0.011789 seconds (80 allocations: 66.172 KiB)
+      From worker 14:	Run cyclic_push_method
+      From worker 14:	  0.002485 seconds (7 allocations: 14.859 KiB)
+      From worker 14:	Run cyclic_multi_push_method
+      From worker 9:	  0.011363 seconds (80 allocations: 66.172 KiB)
+      From worker 9:	Run cyclic_push_method
+      From worker 9:	  0.002366 seconds (7 allocations: 14.859 KiB)
+      From worker 9:	Run cyclic_multi_push_method
+Run cyclic_push_method
+  0.003016 seconds (7 allocations: 14.859 KiB)
+Run cyclic_multi_push_method
+        From worker 3:	  0.004582 seconds (83 allocations: 69.922 KiB)0
+.0      From worker 8:	  0.011334 seconds (80 allocations: 66.172 KiB)0
+4882      From worker 8:	Run cyclic_push_method seconds
+ (      From worker 8:	  0.002379 seconds (7 allocations: 14.859 KiB)83
+      From worker 8:	Run cyclic_multi_push_method allocation
+s:       From worker 7:	  0.005573 seconds (83 allocations: 69.922 KiB)69.922 KiB
+)
+      From worker 16:	  0.004896 seconds (83 allocations: 69.922 KiB)
+      From worker 10:	  0.011734 seconds (80 allocations: 66.172 KiB)
+      From worker 10:	Run cyclic_push_method
+      From worker 10:	  0.002452 seconds (7 allocations: 14.859 KiB)
+      From worker 10:	Run cyclic_multi_push_method
+      From worker 13:	  0.004306 seconds (83 allocations: 69.922 KiB)
+      From worker 11:	  0.005111 seconds (83 allocations: 69.922 KiB)
+      From worker 4:	  0.004250 seconds (83 allocations: 69.922 KiB)
+      From worker 12:	  0.004702 seconds (83 allocations: 69.922 KiB)
+      From worker 6:	  0.004598 seconds (83 allocations: 69.922 KiB)
+      From worker 17:	  0.004994 seconds (83 allocations: 69.922 KiB)
+      From worker 2:	  0.005423 seconds (83 allocations: 69.922 KiB)
+      From worker 9:	  0.004371 seconds (83 allocations: 69.922 KiB)
+      From worker 14:	  0.004883 seconds (83 allocations: 69.922 KiB)
+      From worker 8:	  0.004251 seconds (83 allocations: 69.922 KiB)
+      From worker 10:	  0.004267 seconds (83 allocations: 69.922 KiB)
+Running methods on /p/mnt/scratch/dgleich/allpagerank/data/soc-LiveJournal1-scc-50.smat 
+Loaded /p/mnt/scratch/dgleich/allpagerank/data/soc-LiveJournal1-scc-50.smat
+  3828682 vertices
+  65825429 non-zeros
+
+Benchmarking gs_multi_zero 8
+720
+Dict{String,Int64} with 1 entry:
+  "gs_multi_zero_8" => 720
