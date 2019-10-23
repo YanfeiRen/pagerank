@@ -155,4 +155,13 @@ result = Dict(["fast_power_multi_8" => 968
 params = ["threaded", "threads-64", "graph-orkut", "order-100", "server-nilpotent"]
 push!(results, (result, params))
 
-
+## liveJournal-50 - 1 procs Unimodular Distributed Tests (Only need 8x methods results)
+## "distributed", "procs-1", "graph-livejournal", "order-50", "server-unimodular", "subset8x"
+result = Dict(["fast_power_multi_8" => 240
+  "push_multi_8" => 128
+  "power_multi_8" => 256
+  "gs_multi_8" => 320
+  "push_cyclic_multi_8" => 328
+  "gs_multi_zero_8" => 536])
+params = ["distributed", "procs-1", "graph-livejournal", "order-50", "server-unimodular", "subset8x"]
+push!(results, (result, params))
