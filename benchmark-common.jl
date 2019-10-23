@@ -220,10 +220,10 @@ function benchmark_method_single(maxtime, setupfunction, gdata, alpha, vex::Int)
     n = size(A, 1)
     nbatches = floor(Int, n/nthreads)
 
-    stime = time()
     Threads.@threads for i=1:nthreads
         # allocate info for each thread
         prfunc, preparams, postparams = setupfunction(gdata...,vex,alpha)
+        stime = time()        
         for batch = 1:nbatches
             prfunc(preparams..., (i-1)*nbatches+batch, postparams...)
             if time() - stime <= maxtime
@@ -246,10 +246,10 @@ function benchmark_method_multi(maxtime, setupfunction, gdata, alpha, vex)
     nbatches = floor(Int, n/nthreads)
     nbatches = floor(Int, nbatches/k)
 
-    stime = time()
     Threads.@threads for i=1:nthreads
         # allocate info for each thread
         prfunc, preparams, postparams = setupfunction(gdata...,vex,alpha)
+        stime = time()
         for batch = 1:nbatches
             vcur = VType((i-1)*nbatches+(batch-1)*k+1 : (i-1)*nbatches+batch*k)
             prfunc(preparams..., vcur, postparams...)
