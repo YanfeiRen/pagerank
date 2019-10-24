@@ -205,8 +205,26 @@ params = ["threaded", "threads-64", "graph-livejournal", "order-50", "server-nil
 push!(results, (result, params))
 
 ## "threaded", "threads-64", "graph-livejournal", "order-100", "server-nilpotent"
-
-
+result = Dict(["fast_power_multi_8" => 2680
+  "gs_multi_zero_8" => 6864
+  "push_cyclic_multi_16" => 4064
+  "power_fast" => 779
+  "fast_power_multi_16" => 3280
+  "push_cyclic_multi_8" => 4928
+  "power_simple" => 998
+  "push_simple" => 396
+  "power_multi_16" => 3728
+  "gs_fast" => 1420
+  "push_multi_8" => 1936
+  "power_multi_8" => 3544
+  "gs_multi_8" => 5840
+  "push_cyclic" => 1424
+  "gs_fast_zero" => 1910
+  "gs_multi_16" => 6032
+  "push_multi_16" => 2064
+  "gs_multi_zero_16" => 7472])
+params = ["threaded", "threads-64", "graph-livejournal", "order-100", "server-nilpotent"]
+push!(results, (result, params))
 
 ############### Unimodular Distributed Tests (Only need 8x methods results) #########################
 
