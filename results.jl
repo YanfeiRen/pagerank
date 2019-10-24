@@ -1,48 +1,6 @@
 results = []
 
-## "distributed", "procs-192", "graph-livejournal", "order-original", "server-unimodular"
-result = Dict(["fast_power_multi_8" => 5576
-"gs_multi_zero_8" => 16496
-"push_cyclic_multi_16" => 6080
-"power_fast" => 1239
-"fast_power_multi_16" => 5760
-"push_cyclic_multi_8" => 6856
-"power_simple" => 1598
-"push_simple" => 1030
-"power_multi_16" => 6208
-"gs_fast" => 2863
-"push_multi_8" => 4360
-"power_multi_8" => 7176
-"gs_multi_8" => 11136
-"push_cyclic" => 2042
-"gs_fast_zero" => 3399
-"gs_multi_16" => 11648
-"push_multi_16" => 4944
-"gs_multi_zero_16" => 16720])
-params = ["distributed", "procs-192", "graph-livejournal", "order-original", "server-unimodular"]
-push!(results, (result, params))
-
-## "distributed", "procs-192", "graph-livejournal", "order-50", "server-unimodular"
-result = Dict(["fast_power_multi_8" => 7216
-  "gs_multi_zero_8" => 19272
-  "push_cyclic_multi_16" => 8224
-  "power_fast" => 1956
-  "fast_power_multi_16" => 7520
-  "push_cyclic_multi_8" => 9448
-  "power_simple" => 2281
-  "push_simple" => 1009
-  "power_multi_16" => 7776
-  "gs_fast" => 4461
-  "push_multi_8" => 4416
-  "power_multi_8" => 8448
-  "gs_multi_8" => 13224
-  "push_cyclic" => 3721
-  "gs_fast_zero" => 5165
-  "gs_multi_16" => 14352
-  "push_multi_16" => 5104
-  "gs_multi_zero_16" => 18832])
-params = ["distributed", "procs-192", "graph-livejournal", "order-50", "server-unimodular"]
-push!(results, (result, params))
+###################################### All methods - 14.4 mins threaded ###################
 
 ## "threaded", "threads-1", "graph-livejournal", "order-original", "server-nilpotent" 
 result = Dict(["fast_power_multi_8" => 64
@@ -109,6 +67,31 @@ result = Dict(["fast_power_multi_8" => 2440
   "gs_multi_zero_16" => 5680])
 params = ["threaded", "threads-64", "graph-livejournal", "order-original", "server-nilpotent"]
 push!(results, (result, params))
+
+###################################### All methods - 14.4 mins distributed ###################
+## "distributed", "procs-1", "graph-livejournal", "order-original", "server-nilpotent"
+result = Dict(["fast_power_multi_8" => 112
+  "gs_multi_zero_8" => 288
+  "push_cyclic_multi_16" => 192
+  "power_fast" => 31
+  "fast_power_multi_16" => 144
+  "push_cyclic_multi_8" => 192
+  "power_simple" => 49
+  "push_simple" => 16
+  "power_multi_16" => 176
+  "gs_fast" => 69
+  "push_multi_8" => 96
+  "power_multi_8" => 144
+  "gs_multi_8" => 216
+  "push_cyclic" => 62
+  "gs_fast_zero" => 82
+  "gs_multi_16" => 272
+  "push_multi_16" => 128
+  "gs_multi_zero_16" => 352])
+params = ["distributed", "procs-1", "graph-livejournal", "order-original", "server-nilpotent"]
+push!(results, (result, params))
+
+###################################### Ordering Tests - 14.4 mins ############################
 
 ## "threaded", "threads-64", "graph-orkut", "order-original", "server-nilpotent"
 result = Dict(["fast_power_multi_8" => 512
@@ -177,7 +160,56 @@ result = Dict(["fast_power_multi_8" => 968
 params = ["threaded", "threads-64", "graph-orkut", "order-100", "server-nilpotent"]
 push!(results, (result, params))
 
-## liveJournal-50 - 1 procs Unimodular Distributed Tests (Only need 8x methods results)
+## "threaded", "threads-64", "graph-livejournal", "order-original", "server-nilpotent"
+result = Dict(["fast_power_multi_8" => 2440
+  "gs_multi_zero_8" => 5320
+  "push_cyclic_multi_16" => 3040
+  "power_fast" => 576
+  "fast_power_multi_16" => 2784
+  "push_cyclic_multi_8" => 3192
+  "power_simple" => 731
+  "push_simple" => 323
+  "power_multi_16" => 2784
+  "gs_fast" => 917
+  "push_multi_8" => 1504
+  "power_multi_8" => 2752
+  "gs_multi_8" => 4480
+  "push_cyclic" => 849
+  "gs_fast_zero" => 1324
+  "gs_multi_16" => 4512
+  "push_multi_16" => 2048
+  "gs_multi_zero_16" => 5680])
+params = ["threaded", "threads-64", "graph-livejournal", "order-original", "server-nilpotent"]
+push!(results, (result, params))
+
+## "threaded", "threads-64", "graph-livejournal", "order-50", "server-nilpotent"
+result = Dict(["fast_power_multi_8" => 2720
+  "gs_multi_zero_8" => 7128
+  "push_cyclic_multi_16" => 3984
+  "power_fast" => 769
+  "fast_power_multi_16" => 3104
+  "push_cyclic_multi_8" => 4272
+  "power_simple" => 1006
+  "push_simple" => 357
+  "power_multi_16" => 3520
+  "gs_fast" => 1397
+  "push_multi_8" => 1808
+  "power_multi_8" => 3312
+  "gs_multi_8" => 5496
+  "push_cyclic" => 1482
+  "gs_fast_zero" => 1971
+  "gs_multi_16" => 5888
+  "push_multi_16" => 2048
+  "gs_multi_zero_16" => 6640])
+params = ["threaded", "threads-64", "graph-livejournal", "order-50", "server-nilpotent"]
+push!(results, (result, params))
+
+## "threaded", "threads-64", "graph-livejournal", "order-100", "server-nilpotent"
+
+
+
+############### Unimodular Distributed Tests (Only need 8x methods results) #########################
+
 ## "distributed", "procs-1", "graph-livejournal", "order-50", "server-unimodular", "subset8x"
 result = Dict(["fast_power_multi_8" => 240
   "push_multi_8" => 128
@@ -197,3 +229,79 @@ result = Dict(["fast_power_multi_8" => 5504
   "gs_multi_zero_8" => 14320])
 params = ["distributed", "procs-96", "graph-livejournal", "order-50", "server-unimodular", "subset8x"]
 push!(results, (result, params))
+
+## "distributed", "procs-192", "graph-livejournal", "order-50", "server-unimodular"
+result = Dict(["fast_power_multi_8" => 7216
+  "gs_multi_zero_8" => 19272
+  "push_cyclic_multi_16" => 8224
+  "power_fast" => 1956
+  "fast_power_multi_16" => 7520
+  "push_cyclic_multi_8" => 9448
+  "power_simple" => 2281
+  "push_simple" => 1009
+  "power_multi_16" => 7776
+  "gs_fast" => 4461
+  "push_multi_8" => 4416
+  "power_multi_8" => 8448
+  "gs_multi_8" => 13224
+  "push_cyclic" => 3721
+  "gs_fast_zero" => 5165
+  "gs_multi_16" => 14352
+  "push_multi_16" => 5104
+  "gs_multi_zero_16" => 18832])
+params = ["distributed", "procs-192", "graph-livejournal", "order-50", "server-unimodular"]
+push!(results, (result, params))
+
+## "distributed", "procs-192", "graph-livejournal", "order-original", "server-unimodular"
+result = Dict(["fast_power_multi_8" => 5576
+"gs_multi_zero_8" => 16496
+"push_cyclic_multi_16" => 6080
+"power_fast" => 1239
+"fast_power_multi_16" => 5760
+"push_cyclic_multi_8" => 6856
+"power_simple" => 1598
+"push_simple" => 1030
+"power_multi_16" => 6208
+"gs_fast" => 2863
+"push_multi_8" => 4360
+"power_multi_8" => 7176
+"gs_multi_8" => 11136
+"push_cyclic" => 2042
+"gs_fast_zero" => 3399
+"gs_multi_16" => 11648
+"push_multi_16" => 4944
+"gs_multi_zero_16" => 16720])
+params = ["distributed", "procs-192", "graph-livejournal", "order-original", "server-unimodular"]
+push!(results, (result, params))
+
+## "distributed", "procs-1", "graph-orkut", "order-50", "server-unimodular", "subset8x"
+result = Dict(["fast_power_multi_8" => 80
+  "push_multi_8" => 48
+  "power_multi_8" => 80
+  "gs_multi_8" => 104
+  "push_cyclic_multi_8" => 96
+  "gs_multi_zero_8" => 176])
+params = ["distributed", "procs-1", "graph-orkut", "order-50", "server-unimodular", "subset8x"]
+push!(results, (result, params))
+
+## "distributed", "procs-96", "graph-orkut", "order-50", "server-unimodular", "subset8x"
+result = Dict(["fast_power_multi_8" => 1624
+  "push_multi_8" => 888
+  "power_multi_8" => 1848
+  "gs_multi_8" => 2448
+  "push_cyclic_multi_8" => 1888
+  "gs_multi_zero_8" => 4184])
+params = ["distributed", "procs-96", "graph-orkut", "order-50", "server-unimodular", "subset8x"]
+push!(results, (result, params))
+
+## "distributed", "procs-192", "graph-orkut", "order-50", "server-unimodular", "subset8x"
+result = Dict(["fast_power_multi_8" => 1936
+  "push_multi_8" => 992
+  "power_multi_8" => 728
+  "gs_multi_8" => 3736
+  "push_cyclic_multi_8" => 2216
+  "gs_multi_zero_8" => 6136])
+params = ["distributed", "procs-192", "graph-orkut", "order-50", "server-unimodular", "subset8x"]
+push!(results, (result, params))
+
+############################### Unimodular Threaded Tests (Only need 8x methods results) ###############
