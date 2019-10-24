@@ -88,6 +88,28 @@ result = Dict(["fast_power_multi_8" => 1440
 params = ["threaded", "threads-32", "graph-livejournal", "order-original", "server-nilpotent"]
 push!(results, (result, params))
 
+## "threaded", "threads-64", "graph-livejournal", "order-original", "server-nilpotent"
+result = Dict(["fast_power_multi_8" => 2440
+  "gs_multi_zero_8" => 5320
+  "push_cyclic_multi_16" => 3040
+  "power_fast" => 576
+  "fast_power_multi_16" => 2784
+  "push_cyclic_multi_8" => 3192
+  "power_simple" => 731
+  "push_simple" => 323
+  "power_multi_16" => 2784
+  "gs_fast" => 917
+  "push_multi_8" => 1504
+  "power_multi_8" => 2752
+  "gs_multi_8" => 4480
+  "push_cyclic" => 849
+  "gs_fast_zero" => 1324
+  "gs_multi_16" => 4512
+  "push_multi_16" => 2048
+  "gs_multi_zero_16" => 5680])
+params = ["threaded", "threads-64", "graph-livejournal", "order-original", "server-nilpotent"]
+push!(results, (result, params))
+
 ## "threaded", "threads-64", "graph-orkut", "order-original", "server-nilpotent"
 result = Dict(["fast_power_multi_8" => 512
   "gs_multi_zero_8" => 1744
