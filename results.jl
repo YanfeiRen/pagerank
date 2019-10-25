@@ -91,6 +91,50 @@ result = Dict(["fast_power_multi_8" => 112
 params = ["distributed", "procs-1", "graph-livejournal", "order-original", "server-nilpotent"]
 push!(results, (result, params))
 
+## "distributed", "procs-32", "graph-livejournal", "order-original", "server-nilpotent"
+result = Dict(["fast_power_multi_8" => 1264
+  "gs_multi_zero_8" => 3288
+  "push_cyclic_multi_16" => 1824
+  "power_fast" => 315
+  "fast_power_multi_16" => 1504
+  "push_cyclic_multi_8" => 2064
+  "power_simple" => 456
+  "push_simple" => 193
+  "power_multi_16" => 2032
+  "gs_fast" => 590
+  "push_multi_8" => 1008
+  "power_multi_8" => 1888
+  "gs_multi_8" => 2560
+  "push_cyclic" => 567
+  "gs_fast_zero" => 647
+  "gs_multi_16" => 2944
+  "push_multi_16" => 1184
+  "gs_multi_zero_16" => 3504])
+params = ["distributed", "procs-32", "graph-livejournal", "order-original", "server-nilpotent"]
+push!(results, (result, params))
+
+## "distributed", "procs-64", "graph-livejournal", "order-original", "server-nilpotent"
+result = Dict(["fast_power_multi_8" => 2008
+  "gs_multi_zero_8" => 5744
+  "push_cyclic_multi_16" => 2544
+  "power_fast" => 510
+  "fast_power_multi_16" => 2272
+  "push_cyclic_multi_8" => 3048
+  "power_simple" => 719
+  "push_simple" => 293
+  "power_multi_16" => 2944
+  "gs_fast" => 869
+  "push_multi_8" => 1504
+  "power_multi_8" => 2808
+  "gs_multi_8" => 4280
+  "push_cyclic" => 756
+  "gs_fast_zero" => 1062
+  "gs_multi_16" => 4352
+  "push_multi_16" => 2032
+  "gs_multi_zero_16" => 5408])
+params = ["distributed", "procs-64", "graph-livejournal", "order-original", "server-nilpotent"]
+push!(results, (result, params))
+
 ###################################### Ordering Tests - 14.4 mins ############################
 
 ## "threaded", "threads-64", "graph-orkut", "order-original", "server-nilpotent"
@@ -370,6 +414,13 @@ result = Dict(["fast_power_multi_8" => 712
   "gs_multi_8" => 1888
   "push_cyclic_multi_8" => 1584
   "gs_multi_zero_8" => 2384])
+params = ["threaded", "threads-96", "graph-orkut", "order-50", "server-unimodular", "subset8x"]
+push!(results, (result, params))
 
 ## "threaded", "threads-192", "graph-orkut", "order-50", "server-unimodular", "subset8x"
-
+# result = Dict(["fast_power_multi_8" => 0
+#  "push_multi_8" => 0
+#  "power_multi_8" => 0
+#  "gs_multi_8" => 0
+#  "push_cyclic_multi_8" => 1040
+#  "gs_multi_zero_8" => 0])
