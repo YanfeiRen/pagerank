@@ -50,3 +50,9 @@ end
 make_order_table(orkut_order...)
 
 ##
+## Look at the threaded results for orkut on nilpotent as order varies
+subset = [8,9,10] # chosen manually...
+lj_order = getindex.(results[subset],1)
+display(allparams[subset])
+##
+make_order_table(lj_order...)
