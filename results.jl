@@ -323,3 +323,53 @@ params = ["distributed", "procs-192", "graph-orkut", "order-50", "server-unimodu
 push!(results, (result, params))
 
 ############################### Unimodular Threaded Tests (Only need 8x methods results) ###############
+## "threaded", "threads-1", "graph-livejournal", "order-50", "server-unimodular", "subset8x"
+result = Dict(["fast_power_multi_8" => 104
+  "push_multi_8" => 64
+  "power_multi_8" => 104
+  "gs_multi_8" => 160
+  "push_cyclic_multi_8" => 160
+  "gs_multi_zero_8" => 264])
+params = ["threaded", "threads-1", "graph-livejournal", "order-50", "server-unimodular", "subset8x"]
+push!(results, (result, params))
+
+## "threaded", "threads-96", "graph-livejournal", "order-50", "server-unimodular", "subset8x"
+result = Dict(["fast_power_multi_8" => 2992
+  "push_multi_8" => 2752
+  "power_multi_8" => 3232
+  "gs_multi_8" => 6744
+  "push_cyclic_multi_8" => 6432
+  "gs_multi_zero_8" => 10248])
+params = ["threaded", "threads-96", "graph-livejournal", "order-50", "server-unimodular", "subset8x"]
+push!(results, (result, params))
+
+## "threaded", "threads-192", "graph-livejournal", "order-50", "server-unimodular", "subset8x"
+result = Dict(["fast_power_multi_8" => 80
+  "push_multi_8" => 1808
+  "power_multi_8" => 272
+  "gs_multi_8" => 2288
+  "push_cyclic_multi_8" => 4752
+  "gs_multi_zero_8" => 3592])
+params = ["threaded", "threads-192", "graph-livejournal", "order-50", "server-unimodular", "subset8x"]
+push!(results, (result, params))
+
+## "threaded", "threads-1", "graph-orkut", "order-50", "server-unimodular", "subset8x"
+result = Dict(["fast_power_multi_8" => 40
+  "push_multi_8" => 24
+  "power_multi_8" => 40
+  "gs_multi_8" => 56
+  "push_cyclic_multi_8" => 48
+  "gs_multi_zero_8" => 88])
+params = ["threaded", "threads-1", "graph-orkut", "order-50", "server-unimodular", "subset8x"]
+push!(results, (result, params))
+
+## "threaded", "threads-96", "graph-orkut", "order-50", "server-unimodular", "subset8x"
+result = Dict(["fast_power_multi_8" => 712
+  "push_multi_8" => 680
+  "power_multi_8" => 1048
+  "gs_multi_8" => 1888
+  "push_cyclic_multi_8" => 1584
+  "gs_multi_zero_8" => 2384])
+
+## "threaded", "threads-192", "graph-orkut", "order-50", "server-unimodular", "subset8x"
+
