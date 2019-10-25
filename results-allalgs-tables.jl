@@ -7,10 +7,17 @@ allparams = getindex.(results,2)
 display(allparams)
 allparams
 ## Look at the threaded results for livejournal on nilpotent
-subset = [3,4,5] # chosen manually...
+subset = [1,2,3] # chosen manually...
 results[subset]
-nthreads = [1,32]
-@show allparams[subset]
+nthreads = [1,32,64]
+display(allparams[subset])
+## We should
+#=
+["threaded", "threads-1", "graph-livejournal", "order-original", "server-nilpotent"]
+["threaded", "threads-32", "graph-livejournal", "order-original", "server-nilpotent"]
+["threaded", "threads-64", "graph-livejournal", "order-original", "server-nilpotent"]
+=#
+##
 Ts = getindex.(results[subset], 1)
 
 function make_threads_table(r, nthreads)
@@ -47,5 +54,8 @@ function make_threads_table(r, nthreads)
 end
 make_threads_table(Ts, nthreads)
 ##
-push!(Ts, Ts[2])
-make_threads_table(Ts, nthreads)
+## Look at the distributed results for livejournal on nilpotent
+subset = [4,4,4] # chosen manually...
+results[subset]
+nthreads = [1,32,64]
+display(allparams[subset])
