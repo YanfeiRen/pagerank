@@ -12,7 +12,7 @@ results[subset]
 nthreads = [1,32]
 @show allparams[subset]
 Ts = getindex.(results[subset], 1)
-
+##
 function make_threads_table(r, nthreads)
   methods = ["power_simple" "power_multi_8" "power_multi_16"
              "gs_fast_zero" "gs_multi_zero_8" "gs_multi_zero_16"

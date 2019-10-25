@@ -24,7 +24,7 @@ allparams = getindex.(results,2)
 display(allparams)
 allparams
 ## Look at the threaded results for orkut on nilpotent as order varies
-subset = [6,7,8] # chosen manually...
+subset = [5,6,7] # chosen manually...
 orkut_order = getindex.(results[subset],1)
 display(allparams[subset])
 
@@ -44,3 +44,9 @@ end
 make_order_table(orkut_order...)
 
 ##
+## Look at the threaded results for orkut on nilpotent as order varies
+subset = [8,9,10] # chosen manually...
+lj_order = getindex.(results[subset],1)
+display(allparams[subset])
+##
+make_order_table(lj_order...)
