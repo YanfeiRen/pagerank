@@ -23,7 +23,7 @@ Ts = getindex.(results[subset], 1)
 function make_threads_table(r, nthreads)
   methods = ["power_simple" "power_multi_8" "power_multi_16"
              "gs_fast_zero" "gs_multi_zero_8" "gs_multi_zero_16"
-             "push_cyclic" "push_cyclic_multi_8" "push_cyclic_multi_8"
+             "push_cyclic" "push_cyclic_multi_8" "push_cyclic_multi_16"
              "push_simple" "push_multi_8" "push_multi_16"]
   names = ["Power", "Gauss-Seidel", "Cyclic Push", "Queue Push"]
   #= design 1
@@ -55,7 +55,15 @@ end
 make_threads_table(Ts, nthreads)
 ##
 ## Look at the distributed results for livejournal on nilpotent
-subset = [4,4,4] # chosen manually...
+subset = [4,5,6] # chosen manually...
 results[subset]
 nthreads = [1,32,64]
 display(allparams[subset])
+##
+#=
+["distributed", "procs-1", "graph-livejournal", "order-original", "server-nilpotent"]
+["distributed", "procs-32", "graph-livejournal", "order-original", "server-nilpotent"]
+["distributed", "procs-64", "graph-livejournal", "order-original", "server-nilpotent"]
+julia>
+=#
+make_threads_table(getindex.(results[subset],1), nthreads)
