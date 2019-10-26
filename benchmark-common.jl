@@ -294,7 +294,7 @@ end
 
 function benchmark_method_distributed(nprocs, maxtime, setupfunction, gdata, alpha, vex)
     totalvecs = SharedArray{Int64}(nprocs) ## todo: verify the initial values are 0
-    tvecs = pmap(i->run_batch_distributed(totalvecs, nprocs, maxtime, setupfunction, gdata, alpha, vex, i), 1:nprocs)
+    tvecs = pmap(i->run_batch_distributed(totalvecs, nprocs, maxtime, setupfunction, gdata, alpha, vex, i), 1:nprocs-1)
     @assert sum(tvecs) == sum(totalvecs)
     return sum(totalvecs)
 end
