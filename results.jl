@@ -418,9 +418,11 @@ params = ["threaded", "threads-96", "graph-orkut", "order-50", "server-unimodula
 push!(results, (result, params))
 
 ## "threaded", "threads-192", "graph-orkut", "order-50", "server-unimodular", "subset8x"
-# result = Dict(["fast_power_multi_8" => 0
-#  "push_multi_8" => 0
-#  "power_multi_8" => 0
-#  "gs_multi_8" => 0
-#  "push_cyclic_multi_8" => 1040
-#  "gs_multi_zero_8" => 0])
+result = Dict(["fast_power_multi_8" => 0
+ "push_multi_8" => 0
+ "power_multi_8" => 0
+ "gs_multi_8" => 0
+ "push_cyclic_multi_8" => 1040
+ "gs_multi_zero_8" => 0])
+params = ["threaded", "threads-192", "graph-orkut", "order-50", "server-unimodular", "subset8x"]
+push!(results, (result, params))
