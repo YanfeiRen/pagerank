@@ -1,0 +1,42 @@
+Activating environment at `/u/subspace_s3/dgleich/allpagerank/pagerank/Project.toml`
+Parsed args:
+  runsubset8  =>  false
+  skipwarmup  =>  false
+  graphfile  =>  /p/mnt/scratch/dgleich/allpagerank/data/soc-LiveJournal1-scc-50.smat
+  maxtime  =>  5.0
+  runsubset_gs8  =>  true
+Warming up methods ... 
+Run simple_pagerank for power_method
+  0.001209 seconds (5 allocations: 7.469 KiB)
+Run fast_pagerank_power for power_method
+  0.001303 seconds (15 allocations: 18.781 KiB)
+Run multi_pagerank for power_method
+  0.001491 seconds (34 allocations: 60.516 KiB)
+Run fast_multi_pagerank for power_method
+  0.001805 seconds (221 allocations: 77.031 KiB)
+Run FastGaussSeidel
+  0.002961 seconds (2 allocations: 3.719 KiB)
+Run FastGaussSeidelFromZero
+  0.002876 seconds (2 allocations: 3.719 KiB)
+Run GaussSeidelMultiPR
+  0.005040 seconds (78 allocations: 34.500 KiB)
+Run fast_gauss
+  0.003679 seconds (99 allocations: 53.469 KiB)
+Run simple_push_method
+  0.004608 seconds (4 allocations: 11.109 KiB)
+Run multi_push_method
+  0.009942 seconds (80 allocations: 66.172 KiB)
+Run cyclic_push_method
+  0.002107 seconds (7 allocations: 14.859 KiB)
+Run cyclic_multi_push_method
+  0.004220 seconds (83 allocations: 69.922 KiB)
+ 27.382009 seconds (69.49 M allocations: 3.474 GiB, 4.60% gc time)
+Running methods on /p/mnt/scratch/dgleich/allpagerank/data/soc-LiveJournal1-scc-50.smat 
+Loaded /p/mnt/scratch/dgleich/allpagerank/data/soc-LiveJournal1-scc-50.smat
+  3828682 vertices
+  65825429 non-zeros
+
+Benchmarking gs_multi_zero 8
+1072
+Dict{String,Int64} with 1 entry:
+  "gs_multi_zero_8" => 1072
