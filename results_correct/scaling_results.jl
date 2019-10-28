@@ -3,14 +3,14 @@ function _load_data_run(filename)
   lastline = last(readlines(filename))
   return parse(Int, split(lastline, " => ")[2])
 end
-_load_data_run("results/nilpotent-livejournal-50-1-gs8.txt")
+_load_data_run("results_correct/nilpotent-livejournal-50-1-gs8.txt")
 function load_data(machine,graph,nps;dist::Bool=false)
   nvecs = zeros(Int,0)
   for np in nps
     if dist
-      push!(nvecs, _load_data_run("results/$(machine)-$(graph)-dist$(np)-gs8.txt"))
+      push!(nvecs, _load_data_run("results_correct/$(machine)-$(graph)-dist$(np)-gs8.txt"))
     else
-      push!(nvecs, _load_data_run("results/$(machine)-$(graph)-$(np)-gs8.txt"))
+      push!(nvecs, _load_data_run("results_correct/$(machine)-$(graph)-$(np)-gs8.txt"))
     end
   end
   return (nps,nvecs)
@@ -50,17 +50,17 @@ end
 scaling_plot(np_threads)
 ##
 scaling_plot(np_threads)
-savefig("results/scaling-nilpotent-threads.pdf")
+savefig("results_correct/scaling-nilpotent-threads.pdf")
 ##
 scaling_plot(uni_threads)
-savefig("results/scaling-unimodular-threads.pdf")
+savefig("results_correct/scaling-unimodular-threads.pdf")
 
 ##
 scaling_plot(np_dist;xtype="processes")
-savefig("results/scaling-nilpotent-dist.pdf")
+savefig("results_correct/scaling-nilpotent-dist.pdf")
 ##
 scaling_plot(uni_dist;xtype="processes")
-savefig("results/scaling-unimodular-dist.pdf")
+savefig("results_correct/scaling-unimodular-dist.pdf")
 ##
 plot(np_threads[1],np_threads[2],markersize=4,marker=:circle,label="actual scaling")
 plot!(np_threads[1],np_threads[2][1].*np_threads[1],label="linear scaling")
@@ -69,7 +69,7 @@ ylabel!("number of solutions in 5 minutes")
 plot!(fg_legend=nothing, legend=:topleft )
 ##
 plot!(size=(300,300))
-savefig("results/scaling-nilpotent-threads.pdf")
+savefig("results_correct/scaling-nilpotent-threads.pdf")
 ##
 plot(uni_threads[1],uni_threads[2],markersize=4,marker=:circle,label="actual scaling")
 plot!(uni_threads[1],uni_threads[2][1].*uni_threads[1],label="linear scaling")
@@ -78,7 +78,7 @@ ylabel!("number of solutions in 5 minutes")
 plot!(fg_legend=nothing, legend=:topleft )
 ##
 plot!(size=(300,300))
-savefig("results/scaling-unimodular-threads.pdf")
+savefig("results_correct/scaling-unimodular-threads.pdf")
 ##
 plot(np_dist[1],np_dist[2],markersize=4,marker=:circle,label="actual scaling")
 plot!(np_dist[1],np_dist[2][1].*np_dist[1],label="linear scaling")
@@ -88,4 +88,4 @@ plot!(fg_legend=nothing, legend=:topleft )
 
 ##
 plot!(size=(300,300))
-savefig("results/scaling-unimodular-threads.pdf")
+savefig("results_correct/scaling-unimodular-threads.pdf")
