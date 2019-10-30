@@ -40,6 +40,7 @@ function _unpack(v::Vector{T}) where T <: SArray
   return X
 end
 
+include("test_sor.jl")
 include("test_push_method.jl")
 include("test_gauss_seidel.jl")
 include("test_power_method.jl")

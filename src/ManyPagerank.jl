@@ -9,4 +9,5 @@ include("push_method/simple_push_method.jl")
 include("push_method/multi_push_method.jl")
 include("push_method/cyclic_push_method.jl")
 
+include("sor/sor.jl")
 end
