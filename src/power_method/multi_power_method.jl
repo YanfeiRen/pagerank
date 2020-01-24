@@ -16,7 +16,7 @@ function pagerank_power_multi!(x::Vector{T}, y::Vector{T},
     evs = [ SVector{length(v),Float64}([i == j ? 1 : 0 for j=1:length(v)]) for i in 1:length(v) ]
     @inbounds for iter=1:maxiter
         mul!(y,P,x,alpha,0.0)
-        gamma = 1.0-sum(y)
+        gamma = 1.0 .- sum(y)
 
         for i in 1:length(v)
           y[v[i]] += gamma[i]*evs[i]

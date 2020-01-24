@@ -5,7 +5,7 @@ using DataStructures
 using MatrixNetworks
 
 function _is_in_svec(x::SVector{N,T},k::T) where {N,T}
-    return minimum(abs.(x-k))==0
+    return minimum(abs.(x .- k))==0
 end
 
 function multi_gauss_seidel_from_zero!(x::Vector{T},
