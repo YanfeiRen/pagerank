@@ -63,6 +63,12 @@ function run_methods(graphfile::AbstractString)
     println("Benchmarking cyclic_multi_push_method")
     benchmarks["push_cyclic_multi"] = @benchmark ManyPagerank.cyclic_multi_push_method($At, 0.85, SVector((1 : 8)...))
 
+    println("Benchmarking sor_from_zero")
+    bechmarks["sor_from_zero"] = @benchmark ManyPagerank.sor_from_zero($A, 0.85, SVector((1 : 8)...))
+
+    println("Benchmarking sor_from_zero2")
+    bechmarks["sor_from_zero2"] = @benchmark ManyPagerank.sor_from_zero2($A, 0.85, SVector((1 : 8)...))
+
     # Todo: format the benchmarking output info
     return benchmarks
 

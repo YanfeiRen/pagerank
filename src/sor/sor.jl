@@ -4,7 +4,7 @@ end
 
 
 
-function sor_from_zero!(x::Vector{T}, A, id, d, alpha, v, omega, tol,
+function sor_from_zero!(x::Vector{T}, A, id, d, alpha, omega, v, tol,
 	maxiter::Int) where T
 
 	n = size(A,1)
@@ -54,14 +54,14 @@ end
 
 sor_from_zero(A, alpha, v, tol) = sor_from_zero!(
 	Vector{SVector{length(v),Float64}}(undef, size(A,1)),
-	A,1.0 ./vec(sum(A,dims=2)), vec(sum(A,dims=2)), alpha, v,
-	_optimal_sor_omega(alpha), tol,
+	A,1.0 ./vec(sum(A,dims=2)), vec(sum(A,dims=2)), alpha,
+	_optimal_sor_omega(alpha), v, tol,
 	ceil(Int, log(tol)/log(alpha)))
 
 sor_from_zero(A, alpha, v) = sor_from_zero(A,alpha,v,min((1.0-alpha)/size(A,1), 1.0e-6))
 
 
-function sor_from_zero2!(x::Vector{T}, A, id, d, alpha, v, omega, tol,
+function sor_from_zero2!(x::Vector{T}, A, id, d, alpha, omega, v, tol,
 	maxiter::Int) where T
 
 	n = size(A,1)
@@ -109,8 +109,8 @@ end
 
 sor_from_zero2(A, alpha, v, tol) = sor_from_zero2!(
 	Vector{SVector{length(v),Float64}}(undef, size(A,1)),
-	A,1.0 ./vec(sum(A,dims=2)), vec(sum(A,dims=2)), alpha, v,
-	_optimal_sor_omega(alpha), tol,
+	A,1.0 ./vec(sum(A,dims=2)), vec(sum(A,dims=2)), alpha,
+	_optimal_sor_omega(alpha), v, tol,
 	ceil(Int, log(tol)/log(alpha)))
 
 sor_from_zero2(A, alpha, v) = sor_from_zero2(A,alpha,v,min((1.0-alpha)/size(A,1), 1.0e-6))

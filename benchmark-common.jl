@@ -93,6 +93,18 @@ function warmup_methods()
         x = ManyPagerank.cyclic_multi_push_method(At, 0.85, SVector((1 : k)...))
     end
     @time ManyPagerank.cyclic_multi_push_method(At, 0.85, SVector((1 : 8)...))
+
+    println("Run sor_from_zero")
+    for k=1:kmax
+        x = ManyPagerank.sor_from_zero(A, 0.85, SVector((1 : k)...))
+    end
+    @time ManyPagerank.sor_from_zero(A, 0.85, SVector((1 : 8)...))
+
+    println("Run sor_from_zero2")
+    for k=1:kmax
+        x = ManyPagerank.sor_from_zero2(A, 0.85, SVector((1 : k)...))
+    end
+    @time ManyPagerank.sor_from_zero2(A, 0.85, SVector((1 : 8)...))
 end
 
 ##
@@ -178,6 +190,18 @@ setup_call_cyclic_multi_push_method(A,At,Pt,d,id,v,alpha) =
     At, id, alpha),
     tol_and_maxiter(size(A,1),alpha))
 
+setup_call_sor_from_zero(A,At,Pt,d,id,v,alpha) =
+    (ManyPagerank.sor_from_zero!,
+        (Vector{SVector{length(v),Float64}}(undef, size(A,1)),
+        A, id, d, alpha, 1 + (alpha/(1+sqrt(1-alpha^2)))^2),
+        tol_and_maxiter(size(A,1),alpha))
+
+setup_call_sor_from_zero2(A,At,Pt,d,id,v,alpha) = 
+    (ManyPagerank.sor_from_zero2!,
+        (Vector{SVector{length(v),Float64}}(undef, size(A,1)),
+        A, id, d, alpha, 1 + (alpha/(1+sqrt(1-alpha^2)))^2),
+        tol_and_maxiter(size(A,1),alpha))
+
 ##
 #= single methods
 
@@ -223,7 +247,7 @@ function benchmark_method_single(maxtime, setupfunction, gdata, alpha, vex::Int)
     Threads.@threads for i=1:nthreads
         # allocate info for each thread
         prfunc, preparams, postparams = setupfunction(gdata...,vex,alpha)
-        stime = time()        
+        stime = time()
         for batch = 1:nbatches
             prfunc(preparams..., (i-1)*nbatches+batch, postparams...)
             if time() - stime <= maxtime
