@@ -1,0 +1,19 @@
+Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+Parsed args:
+  graphfile  =>  /p/mnt/scratch/dgleich/allpagerank/data/orkut-links-scc-50.smat
+  maxtime  =>  14.4
+  numprocs  =>  1
+Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+      From worker 2:	Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+Running methods on /p/mnt/scratch/dgleich/allpagerank/data/orkut-links-scc-50.smat 
+Loaded /p/mnt/scratch/dgleich/allpagerank/data/orkut-links-scc-50.smat
+  2997355 vertices
+  220259736 non-zeros
+
+Benchmarking sor_from_zero 8
+208
+Benchmarking sor_from_zero2 8
+192
+Dict{String,Int64} with 2 entries:
+  "sor_from_zero_8" => 208
+  "sor_from_zero2_8" => 192

@@ -1,0 +1,66 @@
+Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+Parsed args:
+  graphfile  =>  /p/mnt/scratch/dgleich/allpagerank/data/soc-LiveJournal1-scc-50.smat
+  maxtime  =>  5.0
+  numprocs  =>  48
+Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+      From worker 20:	Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+      From worker 49:	Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+      From worker 25:	Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+      From worker 19:	Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+      From worker 22:	Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+      From worker 24:	Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+      From worker 37:	Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+      From worker 6:	Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+      From worker 15:	Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+      From worker 10:	Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+      From worker 17:	Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+      From worker 21:	Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+      From worker 2:	Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+      From worker 16:	Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+      From worker 44:	Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+      From worker 33:	Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+      From worker 9:	Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+      From worker 11:	Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+      From worker 34:	Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+      From worker 46:	Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+      From worker 39:	Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+      From worker 47:	Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+      From worker 5:	Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+      From worker 4:	Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+      From worker 3:	Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+      From worker 26:	Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+      From worker 29:	Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+      From worker 14:	Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+      From worker 28:	Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+      From worker 30:	Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+      From worker 43:	Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+      From worker 42:	Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+      From worker 18:	Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+      From worker 38:	Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+      From worker 31:	Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+      From worker 41:	Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+      From worker 45:	Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+      From worker 40:	Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+      From worker 13:	Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+      From worker 27:	Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+      From worker 35:	Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+      From worker 12:	Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+      From worker 23:	Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+      From worker 8:	Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+      From worker 48:	Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+      From worker 36:	Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+      From worker 7:	Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+      From worker 32:	Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+Running methods on /p/mnt/scratch/dgleich/allpagerank/data/soc-LiveJournal1-scc-50.smat 
+Loaded /p/mnt/scratch/dgleich/allpagerank/data/soc-LiveJournal1-scc-50.smat
+  3828682 vertices
+  65825429 non-zeros
+
+Benchmarking sor_from_zero 8
+2136
+Benchmarking sor_from_zero2 8
+400
+Dict{String,Int64} with 2 entries:
+  "sor_from_zero_8" => 2136
+  "sor_from_zero2_8" => 400

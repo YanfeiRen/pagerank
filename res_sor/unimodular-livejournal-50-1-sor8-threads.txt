@@ -1,0 +1,16 @@
+Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+Parsed args:
+  graphfile  =>  /p/mnt/scratch/dgleich/allpagerank/data/soc-LiveJournal1-scc-50.smat
+  maxtime  =>  14.4
+Running methods on /p/mnt/scratch/dgleich/allpagerank/data/soc-LiveJournal1-scc-50.smat 
+Loaded /p/mnt/scratch/dgleich/allpagerank/data/soc-LiveJournal1-scc-50.smat
+  3828682 vertices
+  65825429 non-zeros
+
+Benchmarking sor_from_zero 8
+400
+Benchmarking sor_from_zero2 8
+64
+Dict{String,Int64} with 2 entries:
+  "sor_from_zero_8" => 400
+  "sor_from_zero2_8" => 64

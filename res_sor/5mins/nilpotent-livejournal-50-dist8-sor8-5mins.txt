@@ -1,0 +1,26 @@
+Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+Parsed args:
+  graphfile  =>  /p/mnt/scratch/dgleich/allpagerank/data/soc-LiveJournal1-scc-50.smat
+  maxtime  =>  5.0
+  numprocs  =>  8
+Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+      From worker 2:	Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+      From worker 3:	Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+      From worker 8:	Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+      From worker 9:	Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+      From worker 5:	Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+      From worker 7:	Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+      From worker 4:	Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+      From worker 6:	Activating environment at `/u/subspace_s4/ren105/sor/pagerank/Project.toml`
+Running methods on /p/mnt/scratch/dgleich/allpagerank/data/soc-LiveJournal1-scc-50.smat 
+Loaded /p/mnt/scratch/dgleich/allpagerank/data/soc-LiveJournal1-scc-50.smat
+  3828682 vertices
+  65825429 non-zeros
+
+Benchmarking sor_from_zero 8
+504
+Benchmarking sor_from_zero2 8
+80
+Dict{String,Int64} with 2 entries:
+  "sor_from_zero_8" => 504
+  "sor_from_zero2_8" => 80
